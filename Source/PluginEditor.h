@@ -17,7 +17,6 @@
 class MultiDistortionAudioProcessorEditor  : public juce::AudioProcessorEditor,
                                              public juce::Slider::Listener,
                                              public juce::ComboBox::Listener
-
 {
 public:
     MultiDistortionAudioProcessorEditor (MultiDistortionAudioProcessor&);
@@ -27,25 +26,25 @@ public:
     void paint (juce::Graphics&) override;
     void resized() override;
     
-    //void sliderValueChanged(Slider * slider) override;
-    //void comboBoxChanged(ComboBox * comboBox) override;
+    void sliderValueChanged(juce::Slider * slider) override;
+    void comboBoxChanged(juce::ComboBox * comboBox) override;
 
 private:
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.
     MultiDistortionAudioProcessor& audioProcessor;
     
-    Slider gainKnobLow;
-    ComboBox distortionTypeLow;
+    juce::Slider gainKnobLow;
+    juce::ComboBox distortionTypeLow;
     
-    Slider gainKnobMid;
-    ComboBox distortionTypeMid;
+    juce::Slider gainKnobMid;
+    juce::ComboBox distortionTypeMid;
     
-    Slider gainKnobHiMid;
-    ComboBox distortionTypeHiMid;
+    juce::Slider gainKnobHiMid;
+    juce::ComboBox distortionTypeHiMid;
     
-    Slider gainKnobHigh;
-    ComboBox distortionTypeHigh;
+    juce::Slider gainKnobHigh;
+    juce::ComboBox distortionTypeHigh;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MultiDistortionAudioProcessorEditor)
 };

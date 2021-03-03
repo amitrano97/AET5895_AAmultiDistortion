@@ -19,7 +19,7 @@ public:
     // constructor
     Distortion();
     
-    void processSignal(float * signal, const int numSamples, cons int c);
+    void processSignal(float * signal, const int numSamples, const int c);
     
     
     
