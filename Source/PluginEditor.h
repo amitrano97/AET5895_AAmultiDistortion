@@ -37,6 +37,10 @@ private:
     MultiDistortionAudioProcessor& audioProcessor;
     
     Label mixLabel;
+    Label lowGainLabel;
+    Label midGainLabel;
+    Label hiMidGainLabel;
+    Label highGainLabel;
     
     Slider gainKnobLow;
     ComboBox distortionTypeLow;

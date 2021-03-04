@@ -53,7 +53,21 @@ public:
     void getStateInformation (juce::MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
 
-    float gain = 1.f;
+    float gainLow = 1.f;
+    float gainMid = 1.f;
+    float gainHiMid = 1.f;
+    float gainHigh = 1.f;
+    
+    bool lowBandOff = false;
+    bool midBandOff = false;
+    bool hiMidBandOff = false;
+    bool highBandOff = false;
+    
+    float lowMidCrossover = 250.f;
+    float midCrossover = 2000.f;
+    float midHighCrossover = 8000.f;
+    
+    float mix = 100.f;
     
 private:
     
