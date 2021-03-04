@@ -16,17 +16,10 @@ class Distortion{
     
 public:
     
-    // constructor
-    Distortion();
-    
-    void processSignal(float * signal, const int numSamples, const int c);
-    
-    
+
     
 private:
-    
-    float Fs = 48000.f;
-    
+
     
 };
 

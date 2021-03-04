@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="bnm8f9" name="multiDistortion" projectType="audioplug" useAppConfig="0"
-              addUsingNamespaceToJuceHeader="0" displaySplashScreen="1" jucerFormatVersion="1">
+              displaySplashScreen="1" jucerFormatVersion="1">
   <MAINGROUP id="bKdRAb" name="multiDistortion">
     <GROUP id="{2085A8D3-E416-2A73-A118-62AC97A09360}" name="Source">
       <FILE id="it1TSC" name="PluginProcessor.cpp" compile="1" resource="0"
