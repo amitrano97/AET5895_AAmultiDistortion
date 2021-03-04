@@ -28,6 +28,7 @@ MultiDistortionAudioProcessorEditor::MultiDistortionAudioProcessorEditor (MultiD
     
     lowGainLabel.setText("Gain Low", juce::dontSendNotification);
     lowGainLabel.attachToComponent(&gainKnobLow, false);
+    lowGainLabel.setJustificationType(juce::Justification::centred);
     addAndMakeVisible(lowGainLabel);
     
     distortionTypeLow.addListener(this);
@@ -42,15 +43,15 @@ MultiDistortionAudioProcessorEditor::MultiDistortionAudioProcessorEditor (MultiD
     
     lowBandOff.addListener(this);
     lowBandOff.setBounds(50, 200, 80, 15);
-    lowBandOff.setToggleState(audioProcessor.lowBandOff, dontSendNotification);
+    lowBandOff.setToggleState(audioProcessor.lowBandisOff, dontSendNotification);
     lowBandOff.setButtonText("Band Off");
     addAndMakeVisible(lowBandOff);
     
     lowMidCrossover.addListener(this);
+    lowMidCrossover.setValue(audioProcessor.lowMidCrossoverFreq);
     lowMidCrossover.setSliderStyle(Slider::SliderStyle::LinearHorizontal);
     lowMidCrossover.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 80, 20);
     lowMidCrossover.setTextValueSuffix(" Hz");
-    lowMidCrossover.setValue(audioProcessor.lowMidCrossover);
     lowMidCrossover.setRange(20.f, 2000.f, 1.f);
     lowMidCrossover.setBounds(100, 220, 100, 60);
     addAndMakeVisible(lowMidCrossover);
@@ -66,6 +67,7 @@ MultiDistortionAudioProcessorEditor::MultiDistortionAudioProcessorEditor (MultiD
     
     midGainLabel.setText("Gain Mid", juce::dontSendNotification);
     midGainLabel.attachToComponent(&gainKnobMid, false);
+    midGainLabel.setJustificationType(juce::Justification::centred);
     addAndMakeVisible(midGainLabel);
     
     distortionTypeMid.addListener(this);
@@ -80,15 +82,15 @@ MultiDistortionAudioProcessorEditor::MultiDistortionAudioProcessorEditor (MultiD
     
     midBandOff.addListener(this);
     midBandOff.setBounds(190, 200, 80, 15);
-    midBandOff.setToggleState(audioProcessor.midBandOff, dontSendNotification);
+    midBandOff.setToggleState(audioProcessor.midBandisOff, dontSendNotification);
     midBandOff.setButtonText("Band Off");
     addAndMakeVisible(midBandOff);
     
     midCrossover.addListener(this);
+    midCrossover.setValue(audioProcessor.midCrossoverFreq);
     midCrossover.setSliderStyle(Slider::SliderStyle::LinearHorizontal);
     midCrossover.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 80, 20);
     midCrossover.setTextValueSuffix(" Hz");
-    midCrossover.setValue(audioProcessor.midCrossover);
     midCrossover.setRange(100.f, 12000.f, 1.f);
     midCrossover.setBounds(250, 220, 100, 60);
     addAndMakeVisible(midCrossover);
@@ -104,6 +106,7 @@ MultiDistortionAudioProcessorEditor::MultiDistortionAudioProcessorEditor (MultiD
     
     hiMidGainLabel.setText("Gain Hi-Mid", juce::dontSendNotification);
     hiMidGainLabel.attachToComponent(&gainKnobHiMid, false);
+    hiMidGainLabel.setJustificationType(juce::Justification::centred);
     addAndMakeVisible(hiMidGainLabel);
     
     distortionTypeHiMid.addListener(this);
@@ -118,15 +121,15 @@ MultiDistortionAudioProcessorEditor::MultiDistortionAudioProcessorEditor (MultiD
     
     hiMidBandOff.addListener(this);
     hiMidBandOff.setBounds(330, 200, 80, 15);
-    hiMidBandOff.setToggleState(audioProcessor.hiMidBandOff, dontSendNotification);
+    hiMidBandOff.setToggleState(audioProcessor.hiMidBandisOff, dontSendNotification);
     hiMidBandOff.setButtonText("Band Off");
     addAndMakeVisible(hiMidBandOff);
     
     midHighCrossover.addListener(this);
+    midHighCrossover.setValue(audioProcessor.midHighCrossoverFreq);
     midHighCrossover.setSliderStyle(Slider::SliderStyle::LinearHorizontal);
     midHighCrossover.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 80, 20);
     midHighCrossover.setTextValueSuffix(" Hz");
-    midHighCrossover.setValue(audioProcessor.midHighCrossover);
     midHighCrossover.setRange(800.f, 20000.f, 1.f);
     midHighCrossover.setBounds(400, 220, 100, 60);
     addAndMakeVisible(midHighCrossover);
@@ -142,6 +145,7 @@ MultiDistortionAudioProcessorEditor::MultiDistortionAudioProcessorEditor (MultiD
     
     highGainLabel.setText("Gain High", juce::dontSendNotification);
     highGainLabel.attachToComponent(&gainKnobHigh, false);
+    highGainLabel.setJustificationType(juce::Justification::centred);
     addAndMakeVisible(highGainLabel);
     
     distortionTypeHigh.addListener(this);
@@ -156,13 +160,13 @@ MultiDistortionAudioProcessorEditor::MultiDistortionAudioProcessorEditor (MultiD
     
     highBandOff.addListener(this);
     highBandOff.setBounds(470, 200, 80, 15);
-    highBandOff.setToggleState(audioProcessor.highBandOff, dontSendNotification);
+    highBandOff.setToggleState(audioProcessor.highBandisOff, dontSendNotification);
     highBandOff.setButtonText("Band Off");
     addAndMakeVisible(highBandOff);
     
     mixKnob.addListener(this);
+    mixKnob.setValue(audioProcessor.mixPerc);
     mixKnob.setBounds(650, 100, 100, 90);
-    mixKnob.setValue(audioProcessor.mix);
     mixKnob.setRange(0.f, 100.f, 1.f);
     mixKnob.setTextBoxStyle(Slider::TextBoxRight, false, 40, 20);
     mixKnob.setTextValueSuffix(" %");

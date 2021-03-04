@@ -58,16 +58,16 @@ public:
     float gainHiMid = 1.f;
     float gainHigh = 1.f;
     
-    bool lowBandOff = false;
-    bool midBandOff = false;
-    bool hiMidBandOff = false;
-    bool highBandOff = false;
+    bool lowBandisOff = false; // true means band is muted
+    bool midBandisOff = false;
+    bool hiMidBandisOff = false;
+    bool highBandisOff = false;
     
-    float lowMidCrossover = 250.f;
-    float midCrossover = 2000.f;
-    float midHighCrossover = 8000.f;
+    float lowMidCrossoverFreq = 250.f;
+    float midCrossoverFreq = 2000.f;
+    float midHighCrossoverFreq = 8000.f;
     
-    float mix = 100.f;
+    float mixPerc = 100.f;
     
 private:
     
