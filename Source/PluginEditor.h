@@ -36,6 +36,8 @@ private:
     // access the processor object that created it.
     MultiDistortionAudioProcessor& audioProcessor;
     
+    Label mixLabel;
+    
     Slider gainKnobLow;
     ComboBox distortionTypeLow;
     ToggleButton lowBandOff;
@@ -57,6 +59,8 @@ private:
     Slider gainKnobHigh;
     ComboBox distortionTypeHigh;
     ToggleButton highBandOff;
+    
+    Slider mixKnob;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MultiDistortionAudioProcessorEditor)
 };

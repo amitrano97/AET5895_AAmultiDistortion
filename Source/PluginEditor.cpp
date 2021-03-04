@@ -15,13 +15,13 @@ MultiDistortionAudioProcessorEditor::MultiDistortionAudioProcessorEditor (MultiD
 {
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
-    setSize (600, 300);
+    setSize (800, 300);
     
     gainKnobLow.addListener(this);
     gainKnobLow.setBounds(40, 40, 100, 90);
     gainKnobLow.setValue(0);//audioProcessor.gainLow
     gainKnobLow.setRange(0.f, 4.f, .1f);
-    gainKnobLow.setTextBoxStyle(Slider::TextBoxBelow, false, 75, 25);
+    gainKnobLow.setTextBoxStyle(Slider::TextBoxBelow, false, 40, 20);
     gainKnobLow.setSliderStyle(Slider::SliderStyle::RotaryHorizontalVerticalDrag);
     addAndMakeVisible(gainKnobLow);
     
@@ -31,12 +31,12 @@ MultiDistortionAudioProcessorEditor::MultiDistortionAudioProcessorEditor (MultiD
     distortionTypeLow.addItem("Hard Clip", 3);
     distortionTypeLow.addItem("Cubic", 4);
     distortionTypeLow.addItem("arctan", 5);
-    distortionTypeLow.setSelectedId(4);
-    distortionTypeLow.setBounds(40, 150, 100, 20);
+    distortionTypeLow.setSelectedId(1);
+    distortionTypeLow.setBounds(40, 140, 100, 20);
     addAndMakeVisible(distortionTypeLow);
     
     lowBandOff.addListener(this);
-    lowBandOff.setBounds(50, 180, 80, 15);
+    lowBandOff.setBounds(50, 200, 80, 15);
     lowBandOff.setButtonText("Band Off");
     addAndMakeVisible(lowBandOff);
     
@@ -48,10 +48,10 @@ MultiDistortionAudioProcessorEditor::MultiDistortionAudioProcessorEditor (MultiD
     addAndMakeVisible(lowMidCrossover);
     
     gainKnobMid.addListener(this);
-    gainKnobMid.setBounds(180, 130, 100, 90);
+    gainKnobMid.setBounds(180, 60, 100, 90);
     gainKnobMid.setValue(0);//audioProcessor.gainMid
     gainKnobMid.setRange(0.f, 4.f, .1f);
-    gainKnobMid.setTextBoxStyle(Slider::TextBoxBelow, false, 75, 25);
+    gainKnobMid.setTextBoxStyle(Slider::TextBoxBelow, false, 40, 20);
     gainKnobMid.setSliderStyle(Slider::SliderStyle::RotaryHorizontalVerticalDrag);
     addAndMakeVisible(gainKnobMid);
     
@@ -61,12 +61,12 @@ MultiDistortionAudioProcessorEditor::MultiDistortionAudioProcessorEditor (MultiD
     distortionTypeMid.addItem("Hard Clip", 3);
     distortionTypeMid.addItem("Cubic", 4);
     distortionTypeMid.addItem("arctan", 5);
-    distortionTypeMid.setSelectedId(4);
-    distortionTypeMid.setBounds(180, 100, 100, 20);
+    distortionTypeMid.setSelectedId(2);
+    distortionTypeMid.setBounds(180, 160, 100, 20);
     addAndMakeVisible(distortionTypeMid);
     
     midBandOff.addListener(this);
-    midBandOff.setBounds(190, 70, 80, 15);
+    midBandOff.setBounds(190, 200, 80, 15);
     midBandOff.setButtonText("Band Off");
     addAndMakeVisible(midBandOff);
     
@@ -81,7 +81,7 @@ MultiDistortionAudioProcessorEditor::MultiDistortionAudioProcessorEditor (MultiD
     gainKnobHiMid.setBounds(320, 40, 100, 90);
     gainKnobHiMid.setValue(0);//audioProcessor.gainHiMid
     gainKnobHiMid.setRange(0.f, 4.f, .1f);
-    gainKnobHiMid.setTextBoxStyle(Slider::TextBoxBelow, false, 75, 25);
+    gainKnobHiMid.setTextBoxStyle(Slider::TextBoxBelow, false, 40, 20);
     gainKnobHiMid.setSliderStyle(Slider::SliderStyle::RotaryHorizontalVerticalDrag);
     addAndMakeVisible(gainKnobHiMid);
     
@@ -91,12 +91,12 @@ MultiDistortionAudioProcessorEditor::MultiDistortionAudioProcessorEditor (MultiD
     distortionTypeHiMid.addItem("Hard Clip", 3);
     distortionTypeHiMid.addItem("Cubic", 4);
     distortionTypeHiMid.addItem("arctan", 5);
-    distortionTypeHiMid.setSelectedId(4);
-    distortionTypeHiMid.setBounds(320, 150, 100, 20);
+    distortionTypeHiMid.setSelectedId(3);
+    distortionTypeHiMid.setBounds(320, 140, 100, 20);
     addAndMakeVisible(distortionTypeHiMid);
     
     hiMidBandOff.addListener(this);
-    hiMidBandOff.setBounds(330, 180, 80, 15);
+    hiMidBandOff.setBounds(330, 200, 80, 15);
     hiMidBandOff.setButtonText("Band Off");
     addAndMakeVisible(hiMidBandOff);
     
@@ -108,10 +108,10 @@ MultiDistortionAudioProcessorEditor::MultiDistortionAudioProcessorEditor (MultiD
     addAndMakeVisible(midHighCrossover);
     
     gainKnobHigh.addListener(this);
-    gainKnobHigh.setBounds(460, 130, 100, 90);
-    gainKnobHigh.setValue(0);//audioProcessor.gainHigh
+    gainKnobHigh.setBounds(460, 60, 100, 90);
+    gainKnobHigh.setValue(0.f);//audioProcessor.gain High here
     gainKnobHigh.setRange(0.f, 4.f, .1f);
-    gainKnobHigh.setTextBoxStyle(Slider::TextBoxBelow, false, 75, 25);
+    gainKnobHigh.setTextBoxStyle(Slider::TextBoxBelow, false, 40, 20);
     gainKnobHigh.setSliderStyle(Slider::SliderStyle::RotaryHorizontalVerticalDrag);
     addAndMakeVisible(gainKnobHigh);
     
@@ -121,14 +121,27 @@ MultiDistortionAudioProcessorEditor::MultiDistortionAudioProcessorEditor (MultiD
     distortionTypeHigh.addItem("Hard Clip", 3);
     distortionTypeHigh.addItem("Cubic", 4);
     distortionTypeHigh.addItem("arctan", 5);
-    distortionTypeHigh.setSelectedId(4);
-    distortionTypeHigh.setBounds(460, 100, 100, 20);
+    distortionTypeHigh.setSelectedId(5);
+    distortionTypeHigh.setBounds(460, 160, 100, 20);
     addAndMakeVisible(distortionTypeHigh);
     
     highBandOff.addListener(this);
-    highBandOff.setBounds(470, 70, 80, 15);
+    highBandOff.setBounds(470, 200, 80, 15);
     highBandOff.setButtonText("Band Off");
     addAndMakeVisible(highBandOff);
+    
+    mixKnob.addListener(this);
+    mixKnob.setBounds(650, 100, 100, 90);
+    mixKnob.setValue(0.f); //audioProcessor.mix here
+    mixKnob.setRange(0.f, 100.f, 1.f);
+    mixKnob.setTextBoxStyle(Slider::TextBoxRight, false, 40, 20);
+    mixKnob.setTextValueSuffix("%");
+    mixKnob.setSliderStyle(Slider::SliderStyle::RotaryHorizontalVerticalDrag);
+    addAndMakeVisible(mixKnob);
+    
+    mixLabel.setText("Wet/Dry", juce::dontSendNotification);
+    mixLabel.attachToComponent(&mixKnob, false);
+    addAndMakeVisible(mixLabel);
     
 }
 
@@ -140,12 +153,13 @@ MultiDistortionAudioProcessorEditor::~MultiDistortionAudioProcessorEditor()
 void MultiDistortionAudioProcessorEditor::paint (juce::Graphics& g)
 {
     // (Our component is opaque, so we must completely fill the background with a solid colour)
-    g.fillAll (getLookAndFeel().findColour (juce::ResizableWindow::backgroundColourId));
-
-    g.setColour (juce::Colours::white);
+    g.fillAll (juce::Colours::dimgrey);
+    
+    
+    g.setColour (juce::Colours::black);
     g.setFont (15.0f);
     //g.drawFittedText ("Multiband Distortion", getLocalBounds(), juce::Justification::centred, 1);
-    g.drawFittedText("Multiband Distortion", 200, 20, 200, 5, juce::Justification::centred, 1);
+    g.drawFittedText("Multiband Distortion", 300, 20, 200, 5, juce::Justification::centred, 1);
 }
 
 void MultiDistortionAudioProcessorEditor::resized()
