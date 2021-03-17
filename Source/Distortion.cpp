@@ -9,3 +9,14 @@
 */
 
 #include "Distortion.h"
+
+// Constructor
+Distortion::Distortion(){}
+
+void Distortion::processSignal(float *signal, const int numSamples, const int c){
+    
+    
+    
+}
+
+

@@ -52,7 +52,7 @@ MultiDistortionAudioProcessorEditor::MultiDistortionAudioProcessorEditor (MultiD
     lowMidCrossover.setSliderStyle(Slider::SliderStyle::LinearHorizontal);
     lowMidCrossover.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 80, 20);
     lowMidCrossover.setTextValueSuffix(" Hz");
-    lowMidCrossover.setRange(20.f, 2000.f, 1.f);
+    lowMidCrossover.setRange(20.f, 200.f, 1.f);
     lowMidCrossover.setBounds(100, 220, 100, 60);
     addAndMakeVisible(lowMidCrossover);
     
@@ -91,7 +91,7 @@ MultiDistortionAudioProcessorEditor::MultiDistortionAudioProcessorEditor (MultiD
     midCrossover.setSliderStyle(Slider::SliderStyle::LinearHorizontal);
     midCrossover.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 80, 20);
     midCrossover.setTextValueSuffix(" Hz");
-    midCrossover.setRange(100.f, 12000.f, 1.f);
+    midCrossover.setRange(200.f, 6000.f, 1.f);
     midCrossover.setBounds(250, 220, 100, 60);
     addAndMakeVisible(midCrossover);
     
@@ -130,7 +130,7 @@ MultiDistortionAudioProcessorEditor::MultiDistortionAudioProcessorEditor (MultiD
     midHighCrossover.setSliderStyle(Slider::SliderStyle::LinearHorizontal);
     midHighCrossover.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 80, 20);
     midHighCrossover.setTextValueSuffix(" Hz");
-    midHighCrossover.setRange(800.f, 20000.f, 1.f);
+    midHighCrossover.setRange(6000.f, 20000.f, 1.f);
     midHighCrossover.setBounds(400, 220, 100, 60);
     addAndMakeVisible(midHighCrossover);
     
@@ -203,11 +203,45 @@ void MultiDistortionAudioProcessorEditor::resized()
 }
 
 void MultiDistortionAudioProcessorEditor::sliderValueChanged(Slider *slider){
-    
+    if (slider == &gainKnobLow){
+        audioProcessor.gainLow = gainKnobLow.getValue();
+    }
+    else if (slider == &gainKnobMid){
+        audioProcessor.gainMid = gainKnobMid.getValue();
+    }
+    else if (slider == &gainKnobHiMid){
+        audioProcessor.gainHiMid = gainKnobHiMid.getValue();
+    }
+    else if (slider == &gainKnobHigh){
+        audioProcessor.gainHigh = gainKnobHigh.getValue();
+    }
+    else if (slider == &mixKnob){
+        audioProcessor.mixPerc = mixKnob.getValue();
+    }
+    else if (slider == &lowMidCrossover){
+        audioProcessor.lowMidCrossoverFreq = lowMidCrossover.getValue();
+    }
+    else if (slider == &midCrossover){
+        audioProcessor.midCrossoverFreq = midCrossover.getValue();
+    }
+    else if (slider == &midHighCrossover){
+        audioProcessor.midHighCrossoverFreq = midHighCrossover.getValue();
+    }
 }
 
 void MultiDistortionAudioProcessorEditor::comboBoxChanged(ComboBox *comboBox){
-    
+    if (comboBox == &distortionTypeLow){
+        audioProcessor.
+    }
+    else if (comboBox == &distortionTypeMid){
+        
+    }
+    else if (comboBox == &distortionTypeHiMid){
+        
+    }
+    else if (comboBox == &distortionTypeHigh){
+        
+    }
 }
 
 void MultiDistortionAudioProcessorEditor::buttonClicked(Button *button){
