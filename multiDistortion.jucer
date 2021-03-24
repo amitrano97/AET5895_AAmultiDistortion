@@ -13,8 +13,10 @@
       <FILE id="uYpu45" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
       <FILE id="aIF8ug" name="Distortion.cpp" compile="1" resource="0" file="Source/Distortion.cpp"/>
       <FILE id="CXF2Q6" name="Distortion.h" compile="0" resource="0" file="Source/Distortion.h"/>
-      <FILE id="thtMDk" name="Multiband.cpp" compile="1" resource="0" file="Source/Multiband.cpp"/>
-      <FILE id="gFE38R" name="Multiband.h" compile="0" resource="0" file="Source/Multiband.h"/>
+      <FILE id="LDdKUG" name="Biquad.cpp" compile="1" resource="0" file="Source/Biquad.cpp"/>
+      <FILE id="XGbUtp" name="Biquad.h" compile="0" resource="0" file="Source/Biquad.h"/>
+      <FILE id="PR1xXB" name="MultiBand.cpp" compile="1" resource="0" file="Source/MultiBand.cpp"/>
+      <FILE id="hWWNPD" name="MultiBand.h" compile="0" resource="0" file="Source/MultiBand.h"/>
     </GROUP>
   </MAINGROUP>
   <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" JUCE_VST3_CAN_REPLACE_VST2="0"/>

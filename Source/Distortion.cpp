@@ -19,4 +19,41 @@ void Distortion::processSignal(float *signal, const int numSamples, const int c)
     
 }
 
+void Distortion::setDistortionType(DistortionType newDitortionType){
+    
+    distortionType = newDitortionType;
+    
+    switch (distortionType) {
+        case FULLWAVE:
+            
+            break;
+        
+        case HALFWAVE:
+            
+            break;
+            
+        case HARDCLIP:
+            
+            break;
+            
+        case ATAN:
+            
+            break;
+            
+        case CUBIC:
+            
+            break;
+        
+        case BIT:
+            
+            break;
+            
+        default:
+            
+            break;
+    }
+    
+    
+}
+
 
