@@ -17,11 +17,12 @@ void Distortion::processSignal(float *signal, const int numSamples, const int c)
     
     
     
+    
 }
 
-void Distortion::setDistortionType(DistortionType newDitortionType){
+void Distortion::setDistortionType(DistortionType newDistortionType){
     
-    distortionType = newDitortionType;
+    distortionType = newDistortionType;
     
     switch (distortionType) {
         case FULLWAVE:

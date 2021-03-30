@@ -11,6 +11,8 @@
 #pragma once
 
 #include <JuceHeader.h>
+#include "PluginEditor.h"
+#include "Multiband.h"
 
 class Distortion{
     
@@ -26,7 +28,7 @@ public:
     
     void prepare(float newFs);
     
-    void setDistortionType (DistortionType newDitortionType);
+    void setDistortionType (DistortionType newDistortionType);
 
     
 private:

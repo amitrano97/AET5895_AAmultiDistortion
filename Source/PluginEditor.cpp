@@ -231,16 +231,16 @@ void MultiDistortionAudioProcessorEditor::sliderValueChanged(Slider *slider){
 
 void MultiDistortionAudioProcessorEditor::comboBoxChanged(ComboBox *comboBox){
     if (comboBox == &distortionTypeLow){
-        Distortion::setDistortionType = 
+       // Distortion::setDistortionTypeLow =
     }
     else if (comboBox == &distortionTypeMid){
-        
+        // Distortion::setDistortionTypeMid =
     }
     else if (comboBox == &distortionTypeHiMid){
-        
+        // Distortion::setDistortionTypeHiMid =
     }
     else if (comboBox == &distortionTypeHigh){
-        
+        // Distortion::setDistortionTypeHigh =
     }
 }
 
