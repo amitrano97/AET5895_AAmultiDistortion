@@ -10,8 +10,8 @@
 
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
-#include "Distortion.h"
-#include "Multiband.h"
+
+
 
 //==============================================================================
 /**

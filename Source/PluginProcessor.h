@@ -10,6 +10,7 @@
 
 #include <JuceHeader.h>
 #include "Distortion.h"
+#include "Multiband.h"
 
 //==============================================================================
 /**
@@ -54,6 +55,10 @@ public:
     void getStateInformation (juce::MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
 
+    float thresh = 0.7f;
+    
+    
+    
     float gainLow = 1.f;
     float gainMid = 1.f;
     float gainHiMid = 1.f;
@@ -73,6 +78,7 @@ public:
 private:
     
     Distortion distortion;
+    Multiband multiband;
     
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MultiDistortionAudioProcessor)

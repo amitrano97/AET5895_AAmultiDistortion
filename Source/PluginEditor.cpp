@@ -231,16 +231,70 @@ void MultiDistortionAudioProcessorEditor::sliderValueChanged(Slider *slider){
 
 void MultiDistortionAudioProcessorEditor::comboBoxChanged(ComboBox *comboBox){
     if (comboBox == &distortionTypeLow){
-       // Distortion::setDistortionTypeLow =
+        if (distortionTypeLow.getSelectedId() == 1){
+            audioProcessor.distortionTypeLow = Distortion::DistortionType::FULLWAVE;
+        }
+        if (distortionTypeLow.getSelectedId() == 2){
+            audioProcessor.distortionTypeLow = Distortion::DistortionType::HALFWAVE;
+        }
+        if (distortionTypeLow.getSelectedId() == 3){
+            audioProcessor.distortionTypeLow = Distortion::DistortionType::HARDCLIP;
+        }
+        if (distortionTypeLow.getSelectedId() == 4){
+            audioProcessor.distortionTypeLow = Distortion::DistortionType::ATAN;
+        }
+        if (distortionTypeLow.getSelectedId() == 5){
+            audioProcessor.distortionTypeLow = Distortion::DistortionType::CUBIC;
+        }
     }
     else if (comboBox == &distortionTypeMid){
-        // Distortion::setDistortionTypeMid =
+        if (distortionTypeMid.getSelectedId() == 1){
+            audioProcessor.distortionTypeMid = Distortion::DistortionType::FULLWAVE;
+        }
+        if (distortionTypeMid.getSelectedId() == 2){
+            audioProcessor.distortionTypeMid = Distortion::DistortionType::HALFWAVE;
+        }
+        if (distortionTypeMid.getSelectedId() == 3){
+            audioProcessor.distortionTypeMid = Distortion::DistortionType::HARDCLIP;
+        }
+        if (distortionTypeMid.getSelectedId() == 4){
+            audioProcessor.distortionTypeMid = Distortion::DistortionType::ATAN;
+        }
+        if (distortionTypeMid.getSelectedId() == 5){
+            audioProcessor.distortionTypeMid = Distortion::DistortionType::CUBIC;
+        }
     }
     else if (comboBox == &distortionTypeHiMid){
-        // Distortion::setDistortionTypeHiMid =
+        if (distortionTypeHiMid.getSelectedId() == 1){
+            audioProcessor.distortionTypeHiMid = Distortion::DistortionType::FULLWAVE;
+        }
+        if (distortionTypeHiMid.getSelectedId() == 2){
+            audioProcessor.distortionTypeHiMid = Distortion::DistortionType::HALFWAVE;
+        }
+        if (distortionTypeHiMid.getSelectedId() == 3){
+            audioProcessor.distortionTypeHiMid = Distortion::DistortionType::HARDCLIP;
+        }
+        if (distortionTypeHiMid.getSelectedId() == 4){
+            audioProcessor.distortionTypeHiMid = Distortion::DistortionType::ATAN;
+        }
+        if (distortionTypeHiMid.getSelectedId() == 5){
+            audioProcessor.distortionTypeHiMid = Distortion::DistortionType::CUBIC;
     }
     else if (comboBox == &distortionTypeHigh){
-        // Distortion::setDistortionTypeHigh =
+        if (distortionTypeHigh.getSelectedId() == 1){
+            audioProcessor.distortionTypeHigh = Distortion::DistortionType::FULLWAVE;
+        }
+        if (distortionTypeMid.getSelectedId() == 2){
+            audioProcessor.distortionTypeHigh = Distortion::DistortionType::HALFWAVE;
+        }
+        if (distortionTypeMid.getSelectedId() == 3){
+            audioProcessor.distortionTypeHigh = Distortion::DistortionType::HARDCLIP;
+        }
+        if (distortionTypeMid.getSelectedId() == 4){
+            audioProcessor.distortionTypeHigh = Distortion::DistortionType::ATAN;
+        }
+        if (distortionTypeMid.getSelectedId() == 5){
+            audioProcessor.distortionTypeHigh = Distortion::DistortionType::CUBIC;
     }
 }
 

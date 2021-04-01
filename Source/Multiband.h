@@ -20,25 +20,30 @@ public:
     
     void processSignal(float * signal, const int numSamples, const int c);
     
-    void setCutoffFreqLowMid(float freq);
-    void setCutoffFreqMid(float freq);
-    void setCutoffFreqMidHigh(float freq);
-
+    float filterLow(float x, int c);
+    float filterLowMid(float x, int c);
+    float filterHighMid(float x, int c);
+    float filterHigh(float x, int c);
+    
+    void setCutoffFreqLow(float freq);
+    void setCutoffFreqLowMid(float freqLower, float freqUpper);
+    void setCutoffFreqHighMid(float freqLower, float freqUpper);
+    void setCutoffFreqHigh(float freq);
     
 private:
     
     // Two butterworth filters in series for each band to ensure flat response
     Biquad lowFilter = Biquad(Biquad::FilterType::LPF,0.7071f);
-    Biquad lowFilter2 = Biquad(Biquad::FilterType::LPF,0.7071f);
     
-    Biquad lowMidFilter = Biquad(Biquad::FilterType::BPF1,0.7071f);
-    Biquad lowMidFilter2 = Biquad(Biquad::FilterType::BPF1,0.7071f);
     
-    Biquad HighMidFilter = Biquad(Biquad::FilterType::BPF1,0.7071f);
-    Biquad HighMidFilter2 = Biquad(Biquad::FilterType::BPF1,0.7071f);
+    Biquad lowMidFilter = Biquad(Biquad::FilterType::LPF,0.7071f);
+    Biquad lowMidFilter2 = Biquad(Biquad::FilterType::HPF,0.7071f);
     
-    Biquad HighFilter = Biquad(Biquad::FilterType::HPF,0.7071f);
-    Biquad HighFilter2 = Biquad(Biquad::FilterType::HPF,0.7071f);
+    Biquad highMidFilter = Biquad(Biquad::FilterType::LPF,0.7071f);
+    Biquad highMidFilter2 = Biquad(Biquad::FilterType::HPF,0.7071f);
+    
+    Biquad highFilter = Biquad(Biquad::FilterType::HPF,0.7071f);
+    
     
     
     

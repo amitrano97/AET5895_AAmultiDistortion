@@ -11,8 +11,8 @@
 #pragma once
 
 #include <JuceHeader.h>
-#include "PluginEditor.h"
 #include "Multiband.h"
+#include <math.h>
 
 class Distortion{
     
@@ -24,18 +24,22 @@ public:
     
     void processSignal(float * signal, const int numSamples, const int c);
     
-    float processSample(float x, int c);
-    
-    void prepare(float newFs);
+    float processSample(float x, float gain, float thresh, enum DistortionType, int c);
     
     void setDistortionType (DistortionType newDistortionType);
+    void setGain (float newGain);
+    void setThresh (float newThresh);
 
-    
 private:
+    
+    float thresh = 0.7f;
+    
+    float gain = 1.f;
     
     float Fs = 48000.f;
     
     DistortionType distortionType = ATAN;
+    
     
     
 };
