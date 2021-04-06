@@ -11,12 +11,8 @@
 #include "Multiband.h"
 
 
-
-void Multiband::processSignal(float * signal, const int numSamples, const int c){
-    
-    
-    
-}
+// Constructor
+Multiband::Multiband(){}
 
 
 // Apply applicable filters to each frequency band

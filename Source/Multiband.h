@@ -11,15 +11,15 @@
 #pragma once
 
 #include "Biquad.h"
-#include "PluginEditor.h"
-
-// This class will use biquad to split the signal into the necessary frequency bands to apply processing.
 
 class Multiband{
+    // This class will use biquad to split the signal into the necessary frequency bands to apply processing.
 public:
     
-    void processSignal(float * signal, const int numSamples, const int c);
+    Multiband();
     
+//    void processSignal(float * signal, const int numSamples, const int c);
+//    
     float filterLow(float x, int c);
     float filterLowMid(float x, int c);
     float filterHighMid(float x, int c);

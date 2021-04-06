@@ -24,11 +24,12 @@ public:
     
     void processSignal(float * signal, const int numSamples, const int c);
     
-    float processSample(float x, float gain, float thresh, enum DistortionType, int c);
+    float processSample(float x, float gain, float thresh, int distortionType, int c);
     
-    void setDistortionType (DistortionType newDistortionType);
-    void setGain (float newGain);
+//    void setDistortionType (int newDistortionType);
     void setThresh (float newThresh);
+    void setGain (float newGain);
+    
 
 private:
     
@@ -37,6 +38,8 @@ private:
     float gain = 1.f;
     
     float Fs = 48000.f;
+    
+//    int distortionType = 1;
     
     DistortionType distortionType = ATAN;
     

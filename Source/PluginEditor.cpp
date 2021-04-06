@@ -279,6 +279,7 @@ void MultiDistortionAudioProcessorEditor::comboBoxChanged(ComboBox *comboBox){
         }
         if (distortionTypeHiMid.getSelectedId() == 5){
             audioProcessor.distortionTypeHiMid = Distortion::DistortionType::CUBIC;
+        }
     }
     else if (comboBox == &distortionTypeHigh){
         if (distortionTypeHigh.getSelectedId() == 1){
@@ -295,9 +296,22 @@ void MultiDistortionAudioProcessorEditor::comboBoxChanged(ComboBox *comboBox){
         }
         if (distortionTypeMid.getSelectedId() == 5){
             audioProcessor.distortionTypeHigh = Distortion::DistortionType::CUBIC;
+        }
     }
 }
 
 void MultiDistortionAudioProcessorEditor::buttonClicked(Button *button){
-    
+    if (button == &lowBandOff){
+        
+    }
+    else if (button == &midBandOff){
+        
+    }
+    else if (button == &hiMidBandOff){
+        
+    }
+    else if (button == &highBandOff){
+        
+    }
 }
+

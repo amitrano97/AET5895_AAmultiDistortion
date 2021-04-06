@@ -57,12 +57,16 @@ public:
 
     float thresh = 0.7f;
     
-    
-    
     float gainLow = 1.f;
     float gainMid = 1.f;
     float gainHiMid = 1.f;
     float gainHigh = 1.f;
+    
+    int distortionTypeLow = 1;
+    int distortionTypeMid = 1;
+    int distortionTypeHiMid = 1;
+    int distortionTypeHigh = 1;
+    
     
     bool lowBandisOff = false; // true means band is muted
     bool midBandisOff = false;
@@ -78,6 +82,7 @@ public:
 private:
     
     Distortion distortion;
+    
     Multiband multiband;
     
     //==============================================================================

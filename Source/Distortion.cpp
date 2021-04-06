@@ -24,22 +24,26 @@ void Distortion::processSignal(float *signal, const int numSamples, const int c)
 }
 
 void Distortion::setGain(float newGain){
-    float gain = newGain;
+    gain = newGain;
 }
 
-void setThresh (float newThresh){
-    float thresh = newThresh;
+void Distortion::setThresh(float newThresh){
+    thresh = newThresh;
 }
 
-float Distortion::processSample(float x, float gain, float thresh, enum DistortionType, int c){
+//void Distortion::setDistortionType(int newDistortionType){
+//    distortionType = newDistortionType;
+//}
+
+float Distortion::processSample(float x, float gain, float thresh, int distortionType, int c){
     
-    if (distortionType == FULLWAVE){
+    if (distortionType == 1){
         x *= gain;
         float y = abs(x);
         
         return y;
     }
-    else if (distortionType == HALFWAVE){
+    else if (distortionType == 2){
         x *= gain;
         if (x < 0.f)
         {
@@ -52,7 +56,7 @@ float Distortion::processSample(float x, float gain, float thresh, enum Distorti
             return y;
         }
     }
-    else if (distortionType == HARDCLIP){
+    else if (distortionType == 3){
         x *= gain;
         if (x > thresh)
         {
@@ -70,58 +74,56 @@ float Distortion::processSample(float x, float gain, float thresh, enum Distorti
             return y;
         }
     }
-    else if (distortionType == ATAN){
+    else if (distortionType == 4){
         x *= gain;
         float y = (2.f/M_PI) * atan(gain * x);
         return y;
     }
-    else if (distortionType == CUBIC){
+    else if (distortionType == 5){
         x *= gain;
         float y = x - (1/3)*(x*x*x);
         return y;
     }
-//    Haven't added BitCrush yet.
+//    //Haven't added BitCrush yet.
 //    else if (distortionType == BIT){
 //        
 //    }
-    
 }
 
-void Distortion::setDistortionType(DistortionType newDistortionType){
 
-    distortionType = newDistortionType;
-
-    switch (distortionType) {
-        case FULLWAVE:
-            distortionType = FULLWAVE;
-            break;
-
-        case HALFWAVE:
-            distortionType = HALFWAVE;
-            break;
-
-        case HARDCLIP:
-            distortionType = HARDCLIP;
-            break;
-
-        case ATAN:
-            distortionType = ATAN;
-            break;
-
-        case CUBIC:
-            distortionType = CUBIC;
-            break;
-
-        //case BIT:
-            //    distortionType = BIT;
-            //break;
-
-        default:
-            newDistortionType = ATAN;
-            break;
-    }
-
-
-}
-
+//void Distortion::setDistortionType(DistortionType newDistortionType){
+//
+//    distortionType = newDistortionType;
+//
+//    switch (distortionType) {
+//        case FULLWAVE:
+//            distortionType = FULLWAVE;
+//            break;
+//
+//        case HALFWAVE:
+//            distortionType = HALFWAVE;
+//            break;
+//
+//        case HARDCLIP:
+//            distortionType = HARDCLIP;
+//            break;
+//
+//        case ATAN:
+//            distortionType = ATAN;
+//            break;
+//
+//        case CUBIC:
+//            distortionType = CUBIC;
+//            break;
+//
+////        case BIT:
+////                distortionType = BIT;
+////            break;
+//
+//        default:
+//            newDistortionType = ATAN;
+//            break;
+//    }
+//}
+//
 

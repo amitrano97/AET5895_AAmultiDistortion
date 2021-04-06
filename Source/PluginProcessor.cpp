@@ -95,6 +95,14 @@ void MultiDistortionAudioProcessor::prepareToPlay (double sampleRate, int sample
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
+    multiband.setCutoffFreqLow(lowMidCrossoverFreq);
+    multiband.setCutoffFreqLowMid(lowMidCrossoverFreq, midCrossoverFreq);
+    multiband.setCutoffFreqHighMid(midCrossoverFreq, midHighCrossoverFreq);
+    multiband.setCutoffFreqHigh(midHighCrossoverFreq);
+    
+    distortion.setThresh(thresh);
+    //distortion.setDistortionType(<#DistortionType newDistortionType#>)
+    
 }
 
 void MultiDistortionAudioProcessor::releaseResources()
@@ -139,14 +147,6 @@ void MultiDistortionAudioProcessor::processBlock (juce::AudioBuffer<float>& buff
         buffer.clear (i, 0, buffer.getNumSamples());
 
     
-    multiband.setCutoffFreqLow(lowMidCrossoverFreq);
-    multiband.setCutoffFreqLowMid(lowMidCrossoverFreq, midCrossoverFreq);
-    multiband.setCutoffFreqHighMid(midCrossoverFreq, midHighCrossoverFreq);
-    multiband.setCutoffFreqHigh(midHighCrossoverFreq);
-    
-    distortion.setThresh(thresh);
-    //distortion.setDistortionType(<#DistortionType newDistortionType#>)
-    
     
     for (int channel = 0; channel < totalNumInputChannels; ++channel)
     {
@@ -161,13 +161,16 @@ void MultiDistortionAudioProcessor::processBlock (juce::AudioBuffer<float>& buff
             float xHigh = multiband.filterHigh(x,channel);
             
             // Need to figure out how to input distortionType per frequency band correctly
+            // distortion.processSample
             xLow = distortion.processSample(xLow, gainLow, thresh, distortionTypeLow, channel);
             xLowMid = distortion.processSample(xLowMid, gainMid, thresh, distortionTypeMid, channel);
             xHighMid = distortion.processSample(xHighMid, gainHiMid, thresh, distortionTypeHiMid, channel);
             xHigh = distortion.processSample(xHigh, gainHigh, thresh, distortionTypeHigh, channel);
             
             // Add processed bands back together for full signal
-            x = xLow + xLowMid + xHighMid + xHigh;
+            float xDist = xLow + xLowMid + xHighMid + xHigh;
+            // Mix Knob Adjustment
+            x = (xDist * mixPerc) + (x * (1-mixPerc));
             buffer.getWritePointer(channel)[n] = x;
             
         }
@@ -182,7 +185,7 @@ bool MultiDistortionAudioProcessor::hasEditor() const
 
 juce::AudioProcessorEditor* MultiDistortionAudioProcessor::createEditor()
 {
-    return new MultiDistortionAudioProcessorEditor (*this); 
+    return new MultiDistortionAudioProcessorEditor (*this);
 }
 
 //==============================================================================
