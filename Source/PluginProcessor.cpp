@@ -8,6 +8,7 @@
 
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
+#include "Biquad.h"
 
 //==============================================================================
 MultiDistortionAudioProcessor::MultiDistortionAudioProcessor()
@@ -22,6 +23,14 @@ MultiDistortionAudioProcessor::MultiDistortionAudioProcessor()
                        )
 #endif
 {
+    addParameter(gainLow = new AudioParameterFloat("gainLowDistortion", // string for identifying parameter in code
+                                                   "Gain Low", // string shown in DAW to user
+                                                   1.f, // minimum value for range
+                                                   10.f, // maximum value for range
+                                                   1.f // Default Value for range
+                                                   ));
+    
+    
 }
 
 MultiDistortionAudioProcessor::~MultiDistortionAudioProcessor()
@@ -95,13 +104,8 @@ void MultiDistortionAudioProcessor::prepareToPlay (double sampleRate, int sample
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
-    multiband.setCutoffFreqLow(lowMidCrossoverFreq);
-    multiband.setCutoffFreqLowMid(lowMidCrossoverFreq, midCrossoverFreq);
-    multiband.setCutoffFreqHighMid(midCrossoverFreq, midHighCrossoverFreq);
-    multiband.setCutoffFreqHigh(midHighCrossoverFreq);
-    
-    distortion.setThresh(thresh);
-    //distortion.setDistortionType(<#DistortionType newDistortionType#>)
+
+    multiband.prepare(sampleRate);
     
 }
 
@@ -145,8 +149,26 @@ void MultiDistortionAudioProcessor::processBlock (juce::AudioBuffer<float>& buff
 
     for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
         buffer.clear (i, 0, buffer.getNumSamples());
-
     
+    multiband.setCutoffFreqLow(lowMidCrossoverFreq);
+    multiband.setCutoffFreqLowMid(lowMidCrossoverFreq, midCrossoverFreq);
+    multiband.setCutoffFreqHighMid(midCrossoverFreq, midHighCrossoverFreq);
+    multiband.setCutoffFreqHigh(midHighCrossoverFreq);
+    
+    distortionLow.setGain(*gainLow);
+    distortionMid.setGain(gainMid);
+    distortionHiMid.setGain(gainHiMid);
+    distortionHigh.setGain(gainHigh);
+    
+    distortionLow.setThresh(thresh);
+    distortionMid.setThresh(thresh);
+    distortionHiMid.setThresh(thresh);
+    distortionHigh.setThresh(thresh);
+    
+    distortionLow.setDistortionType(distortionTypeLow);
+    distortionMid.setDistortionType(distortionTypeMid);
+    distortionHiMid.setDistortionType(distortionTypeHiMid);
+    distortionHigh.setDistortionType(distortionTypeHigh);
     
     for (int channel = 0; channel < totalNumInputChannels; ++channel)
     {
@@ -160,18 +182,42 @@ void MultiDistortionAudioProcessor::processBlock (juce::AudioBuffer<float>& buff
             float xHighMid = multiband.filterHighMid(x,channel);
             float xHigh = multiband.filterHigh(x,channel);
             
-            // Need to figure out how to input distortionType per frequency band correctly
             // distortion.processSample
-            xLow = distortion.processSample(xLow, gainLow, thresh, distortionTypeLow, channel);
-            xLowMid = distortion.processSample(xLowMid, gainMid, thresh, distortionTypeMid, channel);
-            xHighMid = distortion.processSample(xHighMid, gainHiMid, thresh, distortionTypeHiMid, channel);
-            xHigh = distortion.processSample(xHigh, gainHigh, thresh, distortionTypeHigh, channel);
+            if (lowBandisOff){
+                xLow = xLow;
+            }
+            else
+            {
+                xLow = distortionLow.processSample(xLow, *gainLow, thresh, distortionTypeLow, channel);
+            }
+            if (midBandisOff){
+                xLowMid = xLowMid;
+            }
+            else
+            {
+                xLowMid = distortionMid.processSample(xLowMid, gainMid, thresh, distortionTypeMid, channel);
+            }
+            if (hiMidBandisOff){
+                xHighMid = xHighMid;
+            }
+            else
+            {
+                xHighMid = distortionHiMid.processSample(xHighMid, gainHiMid, thresh, distortionTypeHiMid, channel);
+            }
+            if (highBandisOff){
+                xHigh = xHigh;
+            }
+            else 
+            {
+                xHigh = distortionHigh.processSample(xHigh, gainHigh, thresh, distortionTypeHigh, channel);
+            }
+            
             
             // Add processed bands back together for full signal
             float xDist = xLow + xLowMid + xHighMid + xHigh;
             // Mix Knob Adjustment
-            x = (xDist * mixPerc) + (x * (1-mixPerc));
-            buffer.getWritePointer(channel)[n] = x;
+            float y = (xDist * (mixPerc/100.f)) + (x * (1-(mixPerc/100.f)));
+            buffer.getWritePointer(channel)[n] = y;
             
         }
     }
@@ -194,12 +240,22 @@ void MultiDistortionAudioProcessor::getStateInformation (juce::MemoryBlock& dest
     // You should use this method to store your parameters in the memory block.
     // You could do that either as raw data, or use the XML or ValueTree classes
     // as intermediaries to make it easy to save and load complex data.
+    std::unique_ptr<XmlElement> xml (new XmlElement("MultiDistortionParameters") );
+    xml->setAttribute("gainLowDistortion", (double) *gainLow);
+    copyXmlToBinary(*xml, destData);
 }
 
 void MultiDistortionAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
 {
     // You should use this method to restore your parameters from this memory block,
     // whose contents will have been created by the getStateInformation() call.
+    std::unique_ptr<XmlElement> xml (getXmlFromBinary(data, sizeInBytes));
+    if (xml != nullptr){
+        if (xml->hasTagName("MultiDistortionParameters")){
+            *gainLow = xml->getDoubleAttribute("gainLowDistortion",5.f);
+        }
+    }
+    
 }
 
 //==============================================================================

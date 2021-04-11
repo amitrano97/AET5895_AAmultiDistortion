@@ -19,9 +19,9 @@ MultiDistortionAudioProcessorEditor::MultiDistortionAudioProcessorEditor (MultiD
     
     gainKnobLow.addListener(this);
     gainKnobLow.setBounds(40, 60, 100, 90);
-    gainKnobLow.setValue(audioProcessor.gainLow);
-    gainKnobLow.setRange(0.f, 4.f, .1f);
-    gainKnobLow.setSkewFactorFromMidPoint(1.f);
+    gainKnobLow.setValue(*audioProcessor.gainLow);
+    gainKnobLow.setRange(1.f, 10.f, .1f);
+    //gainKnobLow.setSkewFactorFromMidPoint(1.f);
     gainKnobLow.setTextBoxStyle(Slider::TextBoxBelow, false, 40, 20);
     gainKnobLow.setSliderStyle(Slider::SliderStyle::RotaryHorizontalVerticalDrag);
     addAndMakeVisible(gainKnobLow);
@@ -37,7 +37,7 @@ MultiDistortionAudioProcessorEditor::MultiDistortionAudioProcessorEditor (MultiD
     distortionTypeLow.addItem("Hard Clip", 3);
     distortionTypeLow.addItem("Cubic", 4);
     distortionTypeLow.addItem("arctan", 5);
-    distortionTypeLow.setSelectedId(1);
+    distortionTypeLow.setSelectedId(audioProcessor.distortionTypeLow);
     distortionTypeLow.setBounds(40, 160, 100, 20);
     addAndMakeVisible(distortionTypeLow);
     
@@ -52,15 +52,15 @@ MultiDistortionAudioProcessorEditor::MultiDistortionAudioProcessorEditor (MultiD
     lowMidCrossover.setSliderStyle(Slider::SliderStyle::LinearHorizontal);
     lowMidCrossover.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 80, 20);
     lowMidCrossover.setTextValueSuffix(" Hz");
-    lowMidCrossover.setRange(20.f, 200.f, 1.f);
+    lowMidCrossover.setRange(20.f, 349.f, 1.f);
     lowMidCrossover.setBounds(100, 220, 100, 60);
     addAndMakeVisible(lowMidCrossover);
     
     gainKnobMid.addListener(this);
     gainKnobMid.setBounds(180, 40, 100, 90);
     gainKnobMid.setValue(audioProcessor.gainMid);
-    gainKnobMid.setRange(0.f, 4.f, .1f);
-    gainKnobMid.setSkewFactorFromMidPoint(1.f);
+    gainKnobMid.setRange(1.f, 10.f, .1f);
+    //gainKnobMid.setSkewFactorFromMidPoint(5.f);
     gainKnobMid.setTextBoxStyle(Slider::TextBoxBelow, false, 40, 20);
     gainKnobMid.setSliderStyle(Slider::SliderStyle::RotaryHorizontalVerticalDrag);
     addAndMakeVisible(gainKnobMid);
@@ -76,7 +76,7 @@ MultiDistortionAudioProcessorEditor::MultiDistortionAudioProcessorEditor (MultiD
     distortionTypeMid.addItem("Hard Clip", 3);
     distortionTypeMid.addItem("Cubic", 4);
     distortionTypeMid.addItem("arctan", 5);
-    distortionTypeMid.setSelectedId(2);
+    distortionTypeMid.setSelectedId(audioProcessor.distortionTypeMid);
     distortionTypeMid.setBounds(180, 140, 100, 20);
     addAndMakeVisible(distortionTypeMid);
     
@@ -91,15 +91,15 @@ MultiDistortionAudioProcessorEditor::MultiDistortionAudioProcessorEditor (MultiD
     midCrossover.setSliderStyle(Slider::SliderStyle::LinearHorizontal);
     midCrossover.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 80, 20);
     midCrossover.setTextValueSuffix(" Hz");
-    midCrossover.setRange(200.f, 6000.f, 1.f);
+    midCrossover.setRange(350.f, 4999.f, 1.f);
     midCrossover.setBounds(250, 220, 100, 60);
     addAndMakeVisible(midCrossover);
     
     gainKnobHiMid.addListener(this);
     gainKnobHiMid.setBounds(320, 60, 100, 90);
     gainKnobHiMid.setValue(audioProcessor.gainHiMid);
-    gainKnobHiMid.setRange(0.f, 4.f, .1f);
-    gainKnobHiMid.setSkewFactorFromMidPoint(1.f);
+    gainKnobHiMid.setRange(1.f, 10.f, .1f);
+    //gainKnobHiMid.setSkewFactorFromMidPoint(1.f);
     gainKnobHiMid.setTextBoxStyle(Slider::TextBoxBelow, false, 40, 20);
     gainKnobHiMid.setSliderStyle(Slider::SliderStyle::RotaryHorizontalVerticalDrag);
     addAndMakeVisible(gainKnobHiMid);
@@ -115,7 +115,7 @@ MultiDistortionAudioProcessorEditor::MultiDistortionAudioProcessorEditor (MultiD
     distortionTypeHiMid.addItem("Hard Clip", 3);
     distortionTypeHiMid.addItem("Cubic", 4);
     distortionTypeHiMid.addItem("arctan", 5);
-    distortionTypeHiMid.setSelectedId(3);
+    distortionTypeHiMid.setSelectedId(audioProcessor.distortionTypeHiMid);
     distortionTypeHiMid.setBounds(320, 160, 100, 20);
     addAndMakeVisible(distortionTypeHiMid);
     
@@ -130,15 +130,15 @@ MultiDistortionAudioProcessorEditor::MultiDistortionAudioProcessorEditor (MultiD
     midHighCrossover.setSliderStyle(Slider::SliderStyle::LinearHorizontal);
     midHighCrossover.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 80, 20);
     midHighCrossover.setTextValueSuffix(" Hz");
-    midHighCrossover.setRange(6000.f, 20000.f, 1.f);
+    midHighCrossover.setRange(5000.f, 20000.f, 1.f);
     midHighCrossover.setBounds(400, 220, 100, 60);
     addAndMakeVisible(midHighCrossover);
     
     gainKnobHigh.addListener(this);
     gainKnobHigh.setBounds(460, 40, 100, 90);
     gainKnobHigh.setValue(audioProcessor.gainHigh);
-    gainKnobHigh.setRange(0.f, 4.f, .1f);
-    gainKnobHigh.setSkewFactorFromMidPoint(1.f);
+    gainKnobHigh.setRange(1.f, 10.f, .1f);
+    //gainKnobHigh.setSkewFactorFromMidPoint(5.f);
     gainKnobHigh.setTextBoxStyle(Slider::TextBoxBelow, false, 40, 20);
     gainKnobHigh.setSliderStyle(Slider::SliderStyle::RotaryHorizontalVerticalDrag);
     addAndMakeVisible(gainKnobHigh);
@@ -154,7 +154,7 @@ MultiDistortionAudioProcessorEditor::MultiDistortionAudioProcessorEditor (MultiD
     distortionTypeHigh.addItem("Hard Clip", 3);
     distortionTypeHigh.addItem("Cubic", 4);
     distortionTypeHigh.addItem("arctan", 5);
-    distortionTypeHigh.setSelectedId(5);
+    distortionTypeHigh.setSelectedId(audioProcessor.distortionTypeHigh);
     distortionTypeHigh.setBounds(460, 140, 100, 20);
     addAndMakeVisible(distortionTypeHigh);
     
@@ -166,7 +166,7 @@ MultiDistortionAudioProcessorEditor::MultiDistortionAudioProcessorEditor (MultiD
     
     mixKnob.addListener(this);
     mixKnob.setValue(audioProcessor.mixPerc);
-    mixKnob.setBounds(650, 100, 100, 90);
+    mixKnob.setBounds(650, 160, 100, 90);
     mixKnob.setRange(0.f, 100.f, 1.f);
     mixKnob.setTextBoxStyle(Slider::TextBoxRight, false, 40, 20);
     mixKnob.setTextValueSuffix(" %");
@@ -177,6 +177,20 @@ MultiDistortionAudioProcessorEditor::MultiDistortionAudioProcessorEditor (MultiD
     mixLabel.attachToComponent(&mixKnob, false);
     addAndMakeVisible(mixLabel);
     
+    outputKnob.addListener(this);
+    outputKnob.setValue(audioProcessor.outputGain);
+    outputKnob.setBounds(650, 40, 110, 90);
+    outputKnob.setRange(-24.f, +24.f, 0.1f);
+    outputKnob.setTextBoxStyle(Slider::TextBoxRight, false, 50, 20);
+    outputKnob.setTextValueSuffix("dB");
+    outputKnob.setSliderStyle(Slider::SliderStyle::RotaryHorizontalVerticalDrag);
+    addAndMakeVisible(outputKnob);
+    
+    outputLabel.setText("Output Gain", juce::dontSendNotification);
+    outputLabel.attachToComponent(&outputKnob, false);
+    addAndMakeVisible(outputLabel);
+    
+    startTimerHz(30);
 }
 
 MultiDistortionAudioProcessorEditor::~MultiDistortionAudioProcessorEditor()
@@ -204,7 +218,7 @@ void MultiDistortionAudioProcessorEditor::resized()
 
 void MultiDistortionAudioProcessorEditor::sliderValueChanged(Slider *slider){
     if (slider == &gainKnobLow){
-        audioProcessor.gainLow = gainKnobLow.getValue();
+        *audioProcessor.gainLow = gainKnobLow.getValue();
     }
     else if (slider == &gainKnobMid){
         audioProcessor.gainMid = gainKnobMid.getValue();
@@ -302,16 +316,20 @@ void MultiDistortionAudioProcessorEditor::comboBoxChanged(ComboBox *comboBox){
 
 void MultiDistortionAudioProcessorEditor::buttonClicked(Button *button){
     if (button == &lowBandOff){
-        
+        audioProcessor.lowBandisOff = !audioProcessor.lowBandisOff;
     }
     else if (button == &midBandOff){
-        
+        audioProcessor.midBandisOff = !audioProcessor.midBandisOff;
     }
     else if (button == &hiMidBandOff){
-        
+        audioProcessor.hiMidBandisOff = !audioProcessor.hiMidBandisOff;
     }
     else if (button == &highBandOff){
-        
+        audioProcessor.highBandisOff = !audioProcessor.highBandisOff;
     }
+}
+
+void MultiDistortionAudioProcessorEditor::timerCallback(){
+    gainKnobLow.setValue(*audioProcessor.gainLow);
 }
 

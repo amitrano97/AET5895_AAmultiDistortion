@@ -55,9 +55,10 @@ public:
     void getStateInformation (juce::MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
 
-    float thresh = 0.7f;
+    float thresh = 0.8f;
     
-    float gainLow = 1.f;
+    //float gainLow = 1.f;
+    AudioParameterFloat * gainLow;
     float gainMid = 1.f;
     float gainHiMid = 1.f;
     float gainHigh = 1.f;
@@ -79,9 +80,14 @@ public:
     
     float mixPerc = 100.f;
     
+    float outputGain = 0.f;
+    
 private:
     
-    Distortion distortion;
+    Distortion distortionLow;
+    Distortion distortionMid;
+    Distortion distortionHiMid;
+    Distortion distortionHigh;
     
     Multiband multiband;
     

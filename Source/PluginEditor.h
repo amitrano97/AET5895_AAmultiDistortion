@@ -17,9 +17,10 @@
 /**
 */
 class MultiDistortionAudioProcessorEditor  : public juce::AudioProcessorEditor,
-                                             public juce::Slider::Listener,
-                                             public juce::ComboBox::Listener,
-                                             public juce::Button::Listener
+                                                public juce::Slider::Listener,
+                                                public juce::ComboBox::Listener,
+                                                public juce::Button::Listener,
+                                                public juce::Timer
 {
 public:
     MultiDistortionAudioProcessorEditor (MultiDistortionAudioProcessor&);
@@ -33,12 +34,15 @@ public:
     void comboBoxChanged(ComboBox * comboBox) override;
     void buttonClicked(Button * button) override;
 
+    void timerCallback() override;
+    
 private:
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.
     MultiDistortionAudioProcessor& audioProcessor;
     
     Label mixLabel;
+    Label outputLabel;
     Label lowGainLabel;
     Label midGainLabel;
     Label hiMidGainLabel;
@@ -67,6 +71,10 @@ private:
     ToggleButton highBandOff;
     
     Slider mixKnob;
+    
+    Slider outputKnob;
+    
+   
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MultiDistortionAudioProcessorEditor)
 };
