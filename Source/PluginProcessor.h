@@ -55,19 +55,14 @@ public:
     void getStateInformation (juce::MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
 
-    float thresh = 0.8f;
+    float thresh = 0.6f;
     
     //float gainLow = 1.f;
     AudioParameterFloat * gainLow;
-    float gainMid = 1.f;
-    float gainHiMid = 1.f;
-    float gainHigh = 1.f;
-    
-//    int distortionTypeLow = 1;
-//    int distortionTypeMid = 1;
-//    int distortionTypeHiMid = 1;
-//    int distortionTypeHigh = 1;
-    
+    float gainMid = 0.f;
+    float gainHiMid = 0.f;
+    float gainHigh = 0.f;
+
     Distortion::DistortionType distortionTypeLow = Distortion::DistortionType::FULLWAVE;
     Distortion::DistortionType distortionTypeMid = Distortion::DistortionType::FULLWAVE;
     Distortion::DistortionType distortionTypeHiMid = Distortion::DistortionType::FULLWAVE;

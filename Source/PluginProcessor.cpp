@@ -26,9 +26,9 @@ MultiDistortionAudioProcessor::MultiDistortionAudioProcessor()
 {
     addParameter(gainLow = new AudioParameterFloat("gainLowDistortion", // string for identifying parameter in code
                                                    "Gain Low", // string shown in DAW to user
-                                                   1.f, // minimum value for range
-                                                   10.f, // maximum value for range
-                                                   1.f // Default Value for range
+                                                   -24.f, // minimum value for range
+                                                   24.f, // maximum value for range
+                                                   0.f // Default Value for range
                                                    ));
     
     

@@ -26,6 +26,7 @@ Distortion::Distortion(){}
 float Distortion::processSample(float x, int c){
     
     float y = x;
+    
     if (distType == 1){
         x *= gain;
         y = abs(x);
@@ -62,8 +63,9 @@ float Distortion::processSample(float x, int c){
     }
     else if (distType == 5){
         x *= gain;
-        y = x - ((1/3)*(x*x*x));
+        y = x - ((1.f/3.f)*(x*x*x));
     }
+    
     return y;
 }
 
@@ -113,7 +115,7 @@ void Distortion::setThresh(float newThresh){
 
 void Distortion::setGain(float newGain){
     
-    gain = newGain;
+    gain = pow(10.f, newGain/20.f);
     
 }
 

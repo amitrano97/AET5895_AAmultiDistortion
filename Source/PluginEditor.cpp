@@ -20,8 +20,9 @@ MultiDistortionAudioProcessorEditor::MultiDistortionAudioProcessorEditor (MultiD
     gainKnobLow.addListener(this);
     gainKnobLow.setBounds(40, 60, 100, 90);
     gainKnobLow.setValue(*audioProcessor.gainLow);
-    gainKnobLow.setRange(1.f, 10.f, .1f);
+    gainKnobLow.setRange(-24.f, 24.f, .1f);
     //gainKnobLow.setSkewFactorFromMidPoint(1.f);
+    gainKnobLow.setTextValueSuffix("dB");
     gainKnobLow.setTextBoxStyle(Slider::TextBoxBelow, false, 40, 20);
     gainKnobLow.setSliderStyle(Slider::SliderStyle::RotaryHorizontalVerticalDrag);
     addAndMakeVisible(gainKnobLow);
@@ -59,8 +60,9 @@ MultiDistortionAudioProcessorEditor::MultiDistortionAudioProcessorEditor (MultiD
     gainKnobMid.addListener(this);
     gainKnobMid.setBounds(180, 40, 100, 90);
     gainKnobMid.setValue(audioProcessor.gainMid);
-    gainKnobMid.setRange(1.f, 10.f, .1f);
+    gainKnobMid.setRange(-24.f, 24.f, .1f);
     //gainKnobMid.setSkewFactorFromMidPoint(5.f);
+    gainKnobMid.setTextValueSuffix("dB");
     gainKnobMid.setTextBoxStyle(Slider::TextBoxBelow, false, 40, 20);
     gainKnobMid.setSliderStyle(Slider::SliderStyle::RotaryHorizontalVerticalDrag);
     addAndMakeVisible(gainKnobMid);
@@ -98,8 +100,9 @@ MultiDistortionAudioProcessorEditor::MultiDistortionAudioProcessorEditor (MultiD
     gainKnobHiMid.addListener(this);
     gainKnobHiMid.setBounds(320, 60, 100, 90);
     gainKnobHiMid.setValue(audioProcessor.gainHiMid);
-    gainKnobHiMid.setRange(1.f, 10.f, .1f);
+    gainKnobHiMid.setRange(-24.f, 24.f, .1f);
     //gainKnobHiMid.setSkewFactorFromMidPoint(1.f);
+    gainKnobHiMid.setTextValueSuffix("dB");
     gainKnobHiMid.setTextBoxStyle(Slider::TextBoxBelow, false, 40, 20);
     gainKnobHiMid.setSliderStyle(Slider::SliderStyle::RotaryHorizontalVerticalDrag);
     addAndMakeVisible(gainKnobHiMid);
@@ -137,8 +140,9 @@ MultiDistortionAudioProcessorEditor::MultiDistortionAudioProcessorEditor (MultiD
     gainKnobHigh.addListener(this);
     gainKnobHigh.setBounds(460, 40, 100, 90);
     gainKnobHigh.setValue(audioProcessor.gainHigh);
-    gainKnobHigh.setRange(1.f, 10.f, .1f);
+    gainKnobHigh.setRange(-24.f, 24.f, .1f);
     //gainKnobHigh.setSkewFactorFromMidPoint(5.f);
+    gainKnobHigh.setTextValueSuffix("dB");
     gainKnobHigh.setTextBoxStyle(Slider::TextBoxBelow, false, 40, 20);
     gainKnobHigh.setSliderStyle(Slider::SliderStyle::RotaryHorizontalVerticalDrag);
     addAndMakeVisible(gainKnobHigh);
