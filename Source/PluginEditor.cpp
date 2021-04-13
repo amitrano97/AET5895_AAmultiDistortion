@@ -241,6 +241,9 @@ void MultiDistortionAudioProcessorEditor::sliderValueChanged(Slider *slider){
     else if (slider == &midHighCrossover){
         audioProcessor.midHighCrossoverFreq = midHighCrossover.getValue();
     }
+    else if (slider == &outputKnob){
+        audioProcessor.outputGain = outputKnob.getValue();
+    }
 }
 
 void MultiDistortionAudioProcessorEditor::comboBoxChanged(ComboBox *comboBox){

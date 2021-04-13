@@ -9,6 +9,7 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 #include "Biquad.h"
+#include <math.h>
 
 //==============================================================================
 MultiDistortionAudioProcessor::MultiDistortionAudioProcessor()
@@ -169,7 +170,8 @@ void MultiDistortionAudioProcessor::processBlock (juce::AudioBuffer<float>& buff
     distortionMid.setDistortionType(distortionTypeMid);
     distortionHiMid.setDistortionType(distortionTypeHiMid);
     distortionHigh.setDistortionType(distortionTypeHigh);
-    
+
+
     for (int channel = 0; channel < totalNumInputChannels; ++channel)
     {
         // Separate signal into 4 bands based on filters in Multiband class.
@@ -188,35 +190,36 @@ void MultiDistortionAudioProcessor::processBlock (juce::AudioBuffer<float>& buff
             }
             else
             {
-                xLow = distortionLow.processSample(xLow, *gainLow, thresh, distortionTypeLow, channel);
+                xLow = distortionLow.processSample(xLow, channel);
             }
             if (midBandisOff){
                 xLowMid = xLowMid;
             }
             else
             {
-                xLowMid = distortionMid.processSample(xLowMid, gainMid, thresh, distortionTypeMid, channel);
+                xLowMid = distortionMid.processSample(xLowMid, channel);
             }
             if (hiMidBandisOff){
                 xHighMid = xHighMid;
             }
             else
             {
-                xHighMid = distortionHiMid.processSample(xHighMid, gainHiMid, thresh, distortionTypeHiMid, channel);
+                xHighMid = distortionHiMid.processSample(xHighMid, channel);
             }
             if (highBandisOff){
                 xHigh = xHigh;
             }
-            else 
+            else
             {
-                xHigh = distortionHigh.processSample(xHigh, gainHigh, thresh, distortionTypeHigh, channel);
+                xHigh = distortionHigh.processSample(xHigh, channel);
             }
-            
-            
+
+
             // Add processed bands back together for full signal
             float xDist = xLow + xLowMid + xHighMid + xHigh;
             // Mix Knob Adjustment
-            float y = (xDist * (mixPerc/100.f)) + (x * (1-(mixPerc/100.f)));
+            float yMix = (xDist * (mixPerc/100.f)) + (x * (1-(mixPerc/100.f)));
+            float y = yMix * (pow(10.f, outputGain/20.f));
             buffer.getWritePointer(channel)[n] = y;
             
         }

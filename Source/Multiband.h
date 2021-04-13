@@ -40,7 +40,6 @@ private:
     Biquad lowFilter = Biquad(Biquad::FilterType::LPF,0.7071f);
     Biquad lowFilter2 = Biquad(Biquad::FilterType::LPF,0.7071f);
     
-    
     Biquad lowMidFilter = Biquad(Biquad::FilterType::HPF,0.7071f);
     Biquad lowMidFilter2 = Biquad(Biquad::FilterType::HPF,0.7071f);
     Biquad lowMidFilter3 = Biquad(Biquad::FilterType::LPF,0.7071f);
@@ -54,10 +53,6 @@ private:
     Biquad highFilter = Biquad(Biquad::FilterType::HPF,0.7071f);
     Biquad highFilter2 = Biquad(Biquad::FilterType::HPF,0.7071f);
     
-    
-    
-    
-    
-    
+
 };
 

@@ -20,14 +20,14 @@ public:
     
     Distortion();
     
-    enum DistortionType { FULLWAVE, HALFWAVE, HARDCLIP, ATAN, CUBIC, BIT };
+    enum DistortionType { FULLWAVE, HALFWAVE, HARDCLIP, ATAN, CUBIC };
     
-    void processSignal(float * signal, const int numSamples, const int c);
+//    void processSignal(float * signal, const int numSamples, const int c);
     void setDistortionType (DistortionType newDistortionType);
     
-    float processSample(float x, float gain, float thresh, int distType, int c);
+    float processSample(float x, int c);
     
-    void setDistortionType (int newDistortionType);
+    void setDistType (int newDistType);
     void setThresh (float newThresh);
     void setGain (float newGain);
     
@@ -42,7 +42,7 @@ private:
     
     int distType = 1; // 1 = Fullwave, 2 = halfwave, 3 = hardclip, 4 = ATAN, 5 = Cubic
     
-    DistortionType distortionType = ATAN;
+    DistortionType distortionType = FULLWAVE;
     
     
     

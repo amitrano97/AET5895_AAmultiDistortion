@@ -36,7 +36,7 @@ void Multiband::prepare(float newFs){
 
 // Apply applicable filters to each frequency band
 float Multiband::filterLow(float x, int c){
-    // two LPFs in series to make flat response between filters
+    // two LPFs in series to make flat response @ crossover
     float xLow1 = lowFilter.processSample(x,c);
     float xLow = lowFilter2.processSample(xLow1,c);
     
@@ -62,7 +62,7 @@ float Multiband::filterHighMid(float x, int c){
 }
 
 float Multiband::filterHigh(float x, int c){
-    // Two HPFs in series to make flat response between filters
+    // Two HPFs in series to make flat response @ crossover
     float xHigh1 = highFilter.processSample(x,c);
     float xHigh = highFilter2.processSample(xHigh1,c);
     
@@ -75,7 +75,6 @@ void Multiband::setCutoffFreqLow(float freq){
 }
 
 void Multiband::setCutoffFreqLowMid(float freqLower, float freqUpper){
-//    float freq = (freqLower + freqUpper)/2;
     
     lowMidFilter.setFreq(freqLower);
     lowMidFilter2.setFreq(freqLower);
