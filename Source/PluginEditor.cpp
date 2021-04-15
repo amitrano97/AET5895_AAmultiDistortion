@@ -17,11 +17,10 @@ MultiDistortionAudioProcessorEditor::MultiDistortionAudioProcessorEditor (MultiD
     // editor's size to whatever you need it to be.
     setSize (800, 300);
     
-    gainKnobLow.addListener(this);
+//    gainKnobLow.addListener(this);
     gainKnobLow.setBounds(40, 60, 100, 90);
-    gainKnobLow.setValue(*audioProcessor.gainLow);
+//    gainKnobLow.setValue(*audioProcessor.gainLow);
     gainKnobLow.setRange(-24.f, 24.f, .1f);
-    //gainKnobLow.setSkewFactorFromMidPoint(1.f);
     gainKnobLow.setTextValueSuffix("dB");
     gainKnobLow.setTextBoxStyle(Slider::TextBoxBelow, false, 40, 20);
     gainKnobLow.setSliderStyle(Slider::SliderStyle::RotaryHorizontalVerticalDrag);
@@ -42,26 +41,26 @@ MultiDistortionAudioProcessorEditor::MultiDistortionAudioProcessorEditor (MultiD
     distortionTypeLow.setBounds(40, 160, 100, 20);
     addAndMakeVisible(distortionTypeLow);
     
-    lowBandOff.addListener(this);
+//    lowBandOff.addListener(this);
     lowBandOff.setBounds(50, 200, 80, 15);
-    lowBandOff.setToggleState(audioProcessor.lowBandisOff, dontSendNotification);
-    lowBandOff.setButtonText("Band Off");
+//    lowBandOff.setToggleState(audioProcessor.lowBandisOff, dontSendNotification);
+    lowBandOff.setButtonText("Bypass");
     addAndMakeVisible(lowBandOff);
     
-    lowMidCrossover.addListener(this);
-    lowMidCrossover.setValue(audioProcessor.lowMidCrossoverFreq);
+//    lowMidCrossover.addListener(this);
+//    lowMidCrossover.setValue(audioProcessor.lowMidCrossoverFreq);
     lowMidCrossover.setSliderStyle(Slider::SliderStyle::LinearHorizontal);
     lowMidCrossover.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 80, 20);
     lowMidCrossover.setTextValueSuffix(" Hz");
     lowMidCrossover.setRange(20.f, 349.f, 1.f);
     lowMidCrossover.setBounds(100, 220, 100, 60);
     addAndMakeVisible(lowMidCrossover);
+
     
-    gainKnobMid.addListener(this);
+//    gainKnobMid.addListener(this);
     gainKnobMid.setBounds(180, 40, 100, 90);
-    gainKnobMid.setValue(audioProcessor.gainMid);
+//    gainKnobMid.setValue(audioProcessor.gainMid);
     gainKnobMid.setRange(-24.f, 24.f, .1f);
-    //gainKnobMid.setSkewFactorFromMidPoint(5.f);
     gainKnobMid.setTextValueSuffix("dB");
     gainKnobMid.setTextBoxStyle(Slider::TextBoxBelow, false, 40, 20);
     gainKnobMid.setSliderStyle(Slider::SliderStyle::RotaryHorizontalVerticalDrag);
@@ -82,14 +81,14 @@ MultiDistortionAudioProcessorEditor::MultiDistortionAudioProcessorEditor (MultiD
     distortionTypeMid.setBounds(180, 140, 100, 20);
     addAndMakeVisible(distortionTypeMid);
     
-    midBandOff.addListener(this);
+//    midBandOff.addListener(this);
     midBandOff.setBounds(190, 200, 80, 15);
-    midBandOff.setToggleState(audioProcessor.midBandisOff, dontSendNotification);
-    midBandOff.setButtonText("Band Off");
+//    midBandOff.setToggleState(audioProcessor.midBandisOff, dontSendNotification);
+    midBandOff.setButtonText("Bypass");
     addAndMakeVisible(midBandOff);
     
-    midCrossover.addListener(this);
-    midCrossover.setValue(audioProcessor.midCrossoverFreq);
+//    midCrossover.addListener(this);
+//    midCrossover.setValue(audioProcessor.midCrossoverFreq);
     midCrossover.setSliderStyle(Slider::SliderStyle::LinearHorizontal);
     midCrossover.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 80, 20);
     midCrossover.setTextValueSuffix(" Hz");
@@ -97,11 +96,10 @@ MultiDistortionAudioProcessorEditor::MultiDistortionAudioProcessorEditor (MultiD
     midCrossover.setBounds(250, 220, 100, 60);
     addAndMakeVisible(midCrossover);
     
-    gainKnobHiMid.addListener(this);
+//    gainKnobHiMid.addListener(this);
     gainKnobHiMid.setBounds(320, 60, 100, 90);
-    gainKnobHiMid.setValue(audioProcessor.gainHiMid);
+//    gainKnobHiMid.setValue(audioProcessor.gainHiMid);
     gainKnobHiMid.setRange(-24.f, 24.f, .1f);
-    //gainKnobHiMid.setSkewFactorFromMidPoint(1.f);
     gainKnobHiMid.setTextValueSuffix("dB");
     gainKnobHiMid.setTextBoxStyle(Slider::TextBoxBelow, false, 40, 20);
     gainKnobHiMid.setSliderStyle(Slider::SliderStyle::RotaryHorizontalVerticalDrag);
@@ -122,14 +120,14 @@ MultiDistortionAudioProcessorEditor::MultiDistortionAudioProcessorEditor (MultiD
     distortionTypeHiMid.setBounds(320, 160, 100, 20);
     addAndMakeVisible(distortionTypeHiMid);
     
-    hiMidBandOff.addListener(this);
+//    hiMidBandOff.addListener(this);
     hiMidBandOff.setBounds(330, 200, 80, 15);
-    hiMidBandOff.setToggleState(audioProcessor.hiMidBandisOff, dontSendNotification);
-    hiMidBandOff.setButtonText("Band Off");
+//    hiMidBandOff.setToggleState(audioProcessor.hiMidBandisOff, dontSendNotification);
+    hiMidBandOff.setButtonText("Bypass");
     addAndMakeVisible(hiMidBandOff);
     
-    midHighCrossover.addListener(this);
-    midHighCrossover.setValue(audioProcessor.midHighCrossoverFreq);
+//    midHighCrossover.addListener(this);
+//    midHighCrossover.setValue(audioProcessor.midHighCrossoverFreq);
     midHighCrossover.setSliderStyle(Slider::SliderStyle::LinearHorizontal);
     midHighCrossover.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 80, 20);
     midHighCrossover.setTextValueSuffix(" Hz");
@@ -137,11 +135,10 @@ MultiDistortionAudioProcessorEditor::MultiDistortionAudioProcessorEditor (MultiD
     midHighCrossover.setBounds(400, 220, 100, 60);
     addAndMakeVisible(midHighCrossover);
     
-    gainKnobHigh.addListener(this);
+//    gainKnobHigh.addListener(this);
     gainKnobHigh.setBounds(460, 40, 100, 90);
-    gainKnobHigh.setValue(audioProcessor.gainHigh);
+//    gainKnobHigh.setValue(audioProcessor.gainHigh);
     gainKnobHigh.setRange(-24.f, 24.f, .1f);
-    //gainKnobHigh.setSkewFactorFromMidPoint(5.f);
     gainKnobHigh.setTextValueSuffix("dB");
     gainKnobHigh.setTextBoxStyle(Slider::TextBoxBelow, false, 40, 20);
     gainKnobHigh.setSliderStyle(Slider::SliderStyle::RotaryHorizontalVerticalDrag);
@@ -162,14 +159,14 @@ MultiDistortionAudioProcessorEditor::MultiDistortionAudioProcessorEditor (MultiD
     distortionTypeHigh.setBounds(460, 140, 100, 20);
     addAndMakeVisible(distortionTypeHigh);
     
-    highBandOff.addListener(this);
+//    highBandOff.addListener(this);
     highBandOff.setBounds(470, 200, 80, 15);
-    highBandOff.setToggleState(audioProcessor.highBandisOff, dontSendNotification);
-    highBandOff.setButtonText("Band Off");
+//    highBandOff.setToggleState(audioProcessor.highBandisOff, dontSendNotification);
+    highBandOff.setButtonText("Bypass");
     addAndMakeVisible(highBandOff);
     
-    mixKnob.addListener(this);
-    mixKnob.setValue(audioProcessor.mixPerc);
+//    mixKnob.addListener(this);
+//    mixKnob.setValue(audioProcessor.mixPerc);
     mixKnob.setBounds(650, 160, 100, 90);
     mixKnob.setRange(0.f, 100.f, 1.f);
     mixKnob.setTextBoxStyle(Slider::TextBoxRight, false, 40, 20);
@@ -181,8 +178,8 @@ MultiDistortionAudioProcessorEditor::MultiDistortionAudioProcessorEditor (MultiD
     mixLabel.attachToComponent(&mixKnob, false);
     addAndMakeVisible(mixLabel);
     
-    outputKnob.addListener(this);
-    outputKnob.setValue(audioProcessor.outputGain);
+//    outputKnob.addListener(this);
+//    outputKnob.setValue(audioProcessor.outputGain);
     outputKnob.setBounds(650, 40, 110, 90);
     outputKnob.setRange(-24.f, +24.f, 0.1f);
     outputKnob.setTextBoxStyle(Slider::TextBoxRight, false, 50, 20);
@@ -194,7 +191,21 @@ MultiDistortionAudioProcessorEditor::MultiDistortionAudioProcessorEditor (MultiD
     outputLabel.attachToComponent(&outputKnob, false);
     addAndMakeVisible(outputLabel);
     
-    startTimerHz(30);
+    //    sliderAttachments = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.sliderState,"lowMidCrossover",lowMidCrossover);
+    sliderAttachments.emplace_back(new AudioProcessorValueTreeState::SliderAttachment(audioProcessor.sliderState,"gainLow",gainKnobLow));
+    sliderAttachments.emplace_back(new AudioProcessorValueTreeState::SliderAttachment(audioProcessor.sliderState,"gainMid",gainKnobMid));
+    sliderAttachments.emplace_back(new AudioProcessorValueTreeState::SliderAttachment(audioProcessor.sliderState,"gainHiMid",gainKnobHiMid));
+    sliderAttachments.emplace_back(new AudioProcessorValueTreeState::SliderAttachment(audioProcessor.sliderState,"gainHigh",gainKnobHigh));
+    sliderAttachments.emplace_back(new AudioProcessorValueTreeState::SliderAttachment(audioProcessor.sliderState,"lowMidCrossover",lowMidCrossover));
+    sliderAttachments.emplace_back(new AudioProcessorValueTreeState::SliderAttachment(audioProcessor.sliderState,"midCrossover",midCrossover));
+    sliderAttachments.emplace_back(new AudioProcessorValueTreeState::SliderAttachment(audioProcessor.sliderState,"midHighMidCrossover",midHighCrossover));
+    sliderAttachments.emplace_back(new AudioProcessorValueTreeState::SliderAttachment(audioProcessor.sliderState,"mixPerc",mixKnob));
+    sliderAttachments.emplace_back(new AudioProcessorValueTreeState::SliderAttachment(audioProcessor.sliderState,"outputGain",outputKnob));
+    buttonAttachments.emplace_back(new AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.sliderState,"lowBandisOff",lowBandOff));
+    buttonAttachments.emplace_back(new AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.sliderState,"midBandisOff",midBandOff));
+    buttonAttachments.emplace_back(new AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.sliderState,"hiMidBandisOff",hiMidBandOff));
+    buttonAttachments.emplace_back(new AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.sliderState,"highBandisOff",highBandOff));
+    
 }
 
 MultiDistortionAudioProcessorEditor::~MultiDistortionAudioProcessorEditor()
@@ -219,7 +230,7 @@ void MultiDistortionAudioProcessorEditor::resized()
     // This is generally where you'll want to lay out the positions of any
     // subcomponents in your editor..
 }
-
+/*
 void MultiDistortionAudioProcessorEditor::sliderValueChanged(Slider *slider){
     if (slider == &gainKnobLow){
         *audioProcessor.gainLow = gainKnobLow.getValue();
@@ -249,7 +260,7 @@ void MultiDistortionAudioProcessorEditor::sliderValueChanged(Slider *slider){
         audioProcessor.outputGain = outputKnob.getValue();
     }
 }
-
+*/
 void MultiDistortionAudioProcessorEditor::comboBoxChanged(ComboBox *comboBox){
     if (comboBox == &distortionTypeLow){
         if (distortionTypeLow.getSelectedId() == 1){
@@ -320,7 +331,7 @@ void MultiDistortionAudioProcessorEditor::comboBoxChanged(ComboBox *comboBox){
         }
     }
 }
-
+/*
 void MultiDistortionAudioProcessorEditor::buttonClicked(Button *button){
     if (button == &lowBandOff){
         audioProcessor.lowBandisOff = !audioProcessor.lowBandisOff;
@@ -336,7 +347,4 @@ void MultiDistortionAudioProcessorEditor::buttonClicked(Button *button){
     }
 }
 
-void MultiDistortionAudioProcessorEditor::timerCallback(){
-    gainKnobLow.setValue(*audioProcessor.gainLow);
-}
-
+*/

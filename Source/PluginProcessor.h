@@ -55,31 +55,36 @@ public:
     void getStateInformation (juce::MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
 
-    float thresh = 0.6f;
+    float thresh = 0.8f;
     
     //float gainLow = 1.f;
-    AudioParameterFloat * gainLow;
-    float gainMid = 0.f;
-    float gainHiMid = 0.f;
-    float gainHigh = 0.f;
+//    AudioParameterFloat * gainLow;
+//    AudioParameterFloat * gainMid;
+//    AudioParameterFloat * gainHiMid;
+//    AudioParameterFloat * gainHigh;
 
-    Distortion::DistortionType distortionTypeLow = Distortion::DistortionType::FULLWAVE;
-    Distortion::DistortionType distortionTypeMid = Distortion::DistortionType::FULLWAVE;
-    Distortion::DistortionType distortionTypeHiMid = Distortion::DistortionType::FULLWAVE;
-    Distortion::DistortionType distortionTypeHigh = Distortion::DistortionType::FULLWAVE;
+    AudioProcessorValueTreeState sliderState;
+    AudioProcessorValueTreeState::ParameterLayout createParameterLayout();
     
-    bool lowBandisOff = false; // true means band is muted
-    bool midBandisOff = false;
-    bool hiMidBandisOff = false;
-    bool highBandisOff = false;
     
-    float lowMidCrossoverFreq = 250.f;
-    float midCrossoverFreq = 2000.f;
-    float midHighCrossoverFreq = 8000.f;
+    Distortion::DistortionType distortionTypeLow = Distortion::DistortionType::CUBIC;
+    Distortion::DistortionType distortionTypeMid = Distortion::DistortionType::CUBIC;
+    Distortion::DistortionType distortionTypeHiMid = Distortion::DistortionType::CUBIC;
+    Distortion::DistortionType distortionTypeHigh = Distortion::DistortionType::CUBIC;
     
-    float mixPerc = 100.f;
+//    bool lowBandisOff = false; // true means band is muted
+//    bool midBandisOff = false;
+//    bool hiMidBandisOff = false;
+//    bool highBandisOff = false;
     
-    float outputGain = 0.f;
+//    float lowMidCrossoverFreq = 250.f;
+//    float midCrossoverFreq = 2000.f;
+//    float midHighCrossoverFreq = 8000.f;
+    
+//    float mixPerc = 100.f;
+    
+//    float outputGain = 0.f;
+    
     
 private:
     

@@ -21,21 +21,34 @@ MultiDistortionAudioProcessor::MultiDistortionAudioProcessor()
                       #endif
                        .withOutput ("Output", juce::AudioChannelSet::stereo(), true)
                      #endif
-                       )
+                       ), sliderState(*this, nullptr, "params", createParameterLayout())
 #endif
 {
-    addParameter(gainLow = new AudioParameterFloat("gainLowDistortion", // string for identifying parameter in code
-                                                   "Gain Low", // string shown in DAW to user
-                                                   -24.f, // minimum value for range
-                                                   24.f, // maximum value for range
-                                                   0.f // Default Value for range
-                                                   ));
-    
-    
 }
 
 MultiDistortionAudioProcessor::~MultiDistortionAudioProcessor()
 {
+}
+
+AudioProcessorValueTreeState::ParameterLayout MultiDistortionAudioProcessor::createParameterLayout(){
+    std::vector<std::unique_ptr<RangedAudioParameter>> params;
+    
+    params.push_back( std::make_unique<AudioParameterFloat> ("gainLow", "Gain Low", -24.f, 24.f, 0.f) );
+    params.push_back( std::make_unique<AudioParameterFloat> ("gainMid", "Gain Mid", -24.f, 24.f, 0.f) );
+    params.push_back( std::make_unique<AudioParameterFloat> ("gainHiMid", "Gain HiMid", -24.f, 24.f, 0.f) );
+    params.push_back( std::make_unique<AudioParameterFloat> ("gainHigh", "Gain High", -24.f, 24.f, 0.f) );
+    params.push_back( std::make_unique<AudioParameterFloat> ("lowMidCrossover","Low Mid Crossover",20.f, 349.f, 250.f) );
+    params.push_back( std::make_unique<AudioParameterFloat> ("midCrossover","Mid Crossover",350.f, 2499.f, 1500.f) );
+    params.push_back( std::make_unique<AudioParameterFloat> ("midHighCrossover","Mid High Crossover",2500.f, 20000.f, 8000.f) );
+    params.push_back( std::make_unique<AudioParameterFloat>("mixPerc", "Wet/Dry", 0.f, 100.f, 100.f) );
+    params.push_back( std::make_unique<AudioParameterFloat>("outputGain", "Output Gain", -24.f, 24.f, 0.f) );
+    params.push_back( std::make_unique<AudioParameterBool>("lowBandisOff", "Bypass Low", false) );
+    params.push_back( std::make_unique<AudioParameterBool>("midBandisOff", "Bypass Mid", false) );
+    params.push_back( std::make_unique<AudioParameterBool>("hiMidBandisOff", "Bypass High Mid", false) );
+    params.push_back( std::make_unique<AudioParameterBool>("highBandisOff", "Bypass High", false) );
+    
+    return { params.begin() , params.end() };
+    
 }
 
 //==============================================================================
@@ -151,21 +164,39 @@ void MultiDistortionAudioProcessor::processBlock (juce::AudioBuffer<float>& buff
     for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
         buffer.clear (i, 0, buffer.getNumSamples());
     
+    float lowMidCrossoverFreq = *sliderState.getRawParameterValue("lowMidCrossover");
+    float midCrossoverFreq = *sliderState.getRawParameterValue("midCrossover");
+    float midHighCrossoverFreq = *sliderState.getRawParameterValue("midHighCrossover");
+    
+    float gainLow = *sliderState.getRawParameterValue("gainLow");
+    float gainMid = *sliderState.getRawParameterValue("gainMid");
+    float gainHiMid = *sliderState.getRawParameterValue("gainHiMid");
+    float gainHigh = *sliderState.getRawParameterValue("gainHigh");
+    
+    bool lowBandisOff = *sliderState.getRawParameterValue("lowBandisOff");
+    bool midBandisOff = *sliderState.getRawParameterValue("midBandisOff");
+    bool hiMidBandisOff = *sliderState.getRawParameterValue("hiMidBandisOff");
+    bool highBandisOff = *sliderState.getRawParameterValue("highBandisOff");
+    
+    float mixPerc = *sliderState.getRawParameterValue("mixPerc");
+    
+    float outputGain = *sliderState.getRawParameterValue("outputGain");
+    
     multiband.setCutoffFreqLow(lowMidCrossoverFreq);
     multiband.setCutoffFreqLowMid(lowMidCrossoverFreq, midCrossoverFreq);
     multiband.setCutoffFreqHighMid(midCrossoverFreq, midHighCrossoverFreq);
     multiband.setCutoffFreqHigh(midHighCrossoverFreq);
-    
-    distortionLow.setGain(*gainLow);
+
+    distortionLow.setGain(gainLow);
     distortionMid.setGain(gainMid);
     distortionHiMid.setGain(gainHiMid);
     distortionHigh.setGain(gainHigh);
-    
+
     distortionLow.setThresh(thresh);
     distortionMid.setThresh(thresh);
     distortionHiMid.setThresh(thresh);
     distortionHigh.setThresh(thresh);
-    
+
     distortionLow.setDistortionType(distortionTypeLow);
     distortionMid.setDistortionType(distortionTypeMid);
     distortionHiMid.setDistortionType(distortionTypeHiMid);
@@ -243,20 +274,19 @@ void MultiDistortionAudioProcessor::getStateInformation (juce::MemoryBlock& dest
     // You should use this method to store your parameters in the memory block.
     // You could do that either as raw data, or use the XML or ValueTree classes
     // as intermediaries to make it easy to save and load complex data.
-    std::unique_ptr<XmlElement> xml (new XmlElement("MultiDistortionParameters") );
-    xml->setAttribute("gainLowDistortion", (double) *gainLow);
+    auto currentState =  sliderState.copyState();
+    std::unique_ptr<XmlElement> xml (currentState.createXml());
     copyXmlToBinary(*xml, destData);
+
 }
 
 void MultiDistortionAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
 {
     // You should use this method to restore your parameters from this memory block,
     // whose contents will have been created by the getStateInformation() call.
-    std::unique_ptr<XmlElement> xml (getXmlFromBinary(data, sizeInBytes));
-    if (xml != nullptr){
-        if (xml->hasTagName("MultiDistortionParameters")){
-            *gainLow = xml->getDoubleAttribute("gainLowDistortion",5.f);
-        }
+    std::unique_ptr<XmlElement> xml ( getXmlFromBinary(data, sizeInBytes));
+    if (xml && xml->hasTagName("params")){
+        sliderState.replaceState(ValueTree::fromXml(*xml));
     }
     
 }
