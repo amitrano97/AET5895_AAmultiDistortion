@@ -34,7 +34,7 @@ public:
 
 private:
     
-    float thresh = 0.6f;
+    float thresh = 0.7f;
     
     float gain = 0.f;
     
