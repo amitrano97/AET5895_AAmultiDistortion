@@ -55,7 +55,7 @@ public:
     void getStateInformation (juce::MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
 
-    float thresh = 0.8f;
+    float thresh = 0.7f;
     
     //float gainLow = 1.f;
 //    AudioParameterFloat * gainLow;

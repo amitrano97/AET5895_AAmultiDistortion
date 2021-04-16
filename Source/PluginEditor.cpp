@@ -18,11 +18,11 @@ MultiDistortionAudioProcessorEditor::MultiDistortionAudioProcessorEditor (MultiD
     setSize (800, 300);
     
 //    gainKnobLow.addListener(this);
-    gainKnobLow.setBounds(40, 60, 100, 90);
 //    gainKnobLow.setValue(*audioProcessor.gainLow);
-    gainKnobLow.setRange(-24.f, 24.f, .1f);
+//    gainKnobLow.setRange(-24.f, 24.f, .1f);
+    gainKnobLow.setBounds(40, 60, 100, 90);
     gainKnobLow.setTextValueSuffix("dB");
-    gainKnobLow.setTextBoxStyle(Slider::TextBoxBelow, false, 40, 20);
+    gainKnobLow.setTextBoxStyle(Slider::TextBoxBelow, false, 55, 20);
     gainKnobLow.setSliderStyle(Slider::SliderStyle::RotaryHorizontalVerticalDrag);
     addAndMakeVisible(gainKnobLow);
     
@@ -42,27 +42,27 @@ MultiDistortionAudioProcessorEditor::MultiDistortionAudioProcessorEditor (MultiD
     addAndMakeVisible(distortionTypeLow);
     
 //    lowBandOff.addListener(this);
-    lowBandOff.setBounds(50, 200, 80, 15);
 //    lowBandOff.setToggleState(audioProcessor.lowBandisOff, dontSendNotification);
+    lowBandOff.setBounds(50, 200, 80, 15);
     lowBandOff.setButtonText("Bypass");
     addAndMakeVisible(lowBandOff);
     
 //    lowMidCrossover.addListener(this);
 //    lowMidCrossover.setValue(audioProcessor.lowMidCrossoverFreq);
+//    lowMidCrossover.setRange(20.f, 349.f, 1.f);
     lowMidCrossover.setSliderStyle(Slider::SliderStyle::LinearHorizontal);
     lowMidCrossover.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 80, 20);
     lowMidCrossover.setTextValueSuffix(" Hz");
-    lowMidCrossover.setRange(20.f, 349.f, 1.f);
     lowMidCrossover.setBounds(100, 220, 100, 60);
     addAndMakeVisible(lowMidCrossover);
 
     
 //    gainKnobMid.addListener(this);
-    gainKnobMid.setBounds(180, 40, 100, 90);
 //    gainKnobMid.setValue(audioProcessor.gainMid);
-    gainKnobMid.setRange(-24.f, 24.f, .1f);
+//    gainKnobMid.setRange(-24.f, 24.f, .1f);
+    gainKnobMid.setBounds(180, 40, 100, 90);
     gainKnobMid.setTextValueSuffix("dB");
-    gainKnobMid.setTextBoxStyle(Slider::TextBoxBelow, false, 40, 20);
+    gainKnobMid.setTextBoxStyle(Slider::TextBoxBelow, false, 55, 20);
     gainKnobMid.setSliderStyle(Slider::SliderStyle::RotaryHorizontalVerticalDrag);
     addAndMakeVisible(gainKnobMid);
     
@@ -82,26 +82,26 @@ MultiDistortionAudioProcessorEditor::MultiDistortionAudioProcessorEditor (MultiD
     addAndMakeVisible(distortionTypeMid);
     
 //    midBandOff.addListener(this);
-    midBandOff.setBounds(190, 200, 80, 15);
 //    midBandOff.setToggleState(audioProcessor.midBandisOff, dontSendNotification);
+    midBandOff.setBounds(190, 200, 80, 15);
     midBandOff.setButtonText("Bypass");
     addAndMakeVisible(midBandOff);
     
 //    midCrossover.addListener(this);
 //    midCrossover.setValue(audioProcessor.midCrossoverFreq);
+//    midCrossover.setRange(350.f, 4999.f, 1.f);
     midCrossover.setSliderStyle(Slider::SliderStyle::LinearHorizontal);
     midCrossover.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 80, 20);
     midCrossover.setTextValueSuffix(" Hz");
-    midCrossover.setRange(350.f, 4999.f, 1.f);
     midCrossover.setBounds(250, 220, 100, 60);
     addAndMakeVisible(midCrossover);
     
 //    gainKnobHiMid.addListener(this);
-    gainKnobHiMid.setBounds(320, 60, 100, 90);
 //    gainKnobHiMid.setValue(audioProcessor.gainHiMid);
-    gainKnobHiMid.setRange(-24.f, 24.f, .1f);
+//    gainKnobHiMid.setRange(-24.f, 24.f, .1f);
+    gainKnobHiMid.setBounds(320, 60, 100, 90);
     gainKnobHiMid.setTextValueSuffix("dB");
-    gainKnobHiMid.setTextBoxStyle(Slider::TextBoxBelow, false, 40, 20);
+    gainKnobHiMid.setTextBoxStyle(Slider::TextBoxBelow, false, 55, 20);
     gainKnobHiMid.setSliderStyle(Slider::SliderStyle::RotaryHorizontalVerticalDrag);
     addAndMakeVisible(gainKnobHiMid);
     
@@ -121,26 +121,26 @@ MultiDistortionAudioProcessorEditor::MultiDistortionAudioProcessorEditor (MultiD
     addAndMakeVisible(distortionTypeHiMid);
     
 //    hiMidBandOff.addListener(this);
-    hiMidBandOff.setBounds(330, 200, 80, 15);
 //    hiMidBandOff.setToggleState(audioProcessor.hiMidBandisOff, dontSendNotification);
+    hiMidBandOff.setBounds(330, 200, 80, 15);
     hiMidBandOff.setButtonText("Bypass");
     addAndMakeVisible(hiMidBandOff);
     
 //    midHighCrossover.addListener(this);
 //    midHighCrossover.setValue(audioProcessor.midHighCrossoverFreq);
+//    midHighCrossover.setRange(5000.f, 20000.f, 1.f);
     midHighCrossover.setSliderStyle(Slider::SliderStyle::LinearHorizontal);
     midHighCrossover.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 80, 20);
     midHighCrossover.setTextValueSuffix(" Hz");
-    midHighCrossover.setRange(5000.f, 20000.f, 1.f);
     midHighCrossover.setBounds(400, 220, 100, 60);
     addAndMakeVisible(midHighCrossover);
     
 //    gainKnobHigh.addListener(this);
-    gainKnobHigh.setBounds(460, 40, 100, 90);
 //    gainKnobHigh.setValue(audioProcessor.gainHigh);
-    gainKnobHigh.setRange(-24.f, 24.f, .1f);
+//    gainKnobHigh.setRange(-24.f, 24.f, .1f);
+    gainKnobHigh.setBounds(460, 40, 100, 90);
     gainKnobHigh.setTextValueSuffix("dB");
-    gainKnobHigh.setTextBoxStyle(Slider::TextBoxBelow, false, 40, 20);
+    gainKnobHigh.setTextBoxStyle(Slider::TextBoxBelow, false, 55, 20);
     gainKnobHigh.setSliderStyle(Slider::SliderStyle::RotaryHorizontalVerticalDrag);
     addAndMakeVisible(gainKnobHigh);
     
@@ -160,16 +160,16 @@ MultiDistortionAudioProcessorEditor::MultiDistortionAudioProcessorEditor (MultiD
     addAndMakeVisible(distortionTypeHigh);
     
 //    highBandOff.addListener(this);
-    highBandOff.setBounds(470, 200, 80, 15);
 //    highBandOff.setToggleState(audioProcessor.highBandisOff, dontSendNotification);
+    highBandOff.setBounds(470, 200, 80, 15);
     highBandOff.setButtonText("Bypass");
     addAndMakeVisible(highBandOff);
     
 //    mixKnob.addListener(this);
 //    mixKnob.setValue(audioProcessor.mixPerc);
-    mixKnob.setBounds(650, 160, 100, 90);
-    mixKnob.setRange(0.f, 100.f, 1.f);
-    mixKnob.setTextBoxStyle(Slider::TextBoxRight, false, 40, 20);
+//    mixKnob.setRange(0.f, 100.f, 1.f);
+    mixKnob.setBounds(650, 160, 110, 90);
+    mixKnob.setTextBoxStyle(Slider::TextBoxRight, false, 50, 20);
     mixKnob.setTextValueSuffix(" %");
     mixKnob.setSliderStyle(Slider::SliderStyle::RotaryHorizontalVerticalDrag);
     addAndMakeVisible(mixKnob);
@@ -180,8 +180,8 @@ MultiDistortionAudioProcessorEditor::MultiDistortionAudioProcessorEditor (MultiD
     
 //    outputKnob.addListener(this);
 //    outputKnob.setValue(audioProcessor.outputGain);
+//    outputKnob.setRange(-24.f, +24.f, 0.1f);
     outputKnob.setBounds(650, 40, 110, 90);
-    outputKnob.setRange(-24.f, +24.f, 0.1f);
     outputKnob.setTextBoxStyle(Slider::TextBoxRight, false, 50, 20);
     outputKnob.setTextValueSuffix("dB");
     outputKnob.setSliderStyle(Slider::SliderStyle::RotaryHorizontalVerticalDrag);
@@ -198,7 +198,7 @@ MultiDistortionAudioProcessorEditor::MultiDistortionAudioProcessorEditor (MultiD
     sliderAttachments.emplace_back(new AudioProcessorValueTreeState::SliderAttachment(audioProcessor.sliderState,"gainHigh",gainKnobHigh));
     sliderAttachments.emplace_back(new AudioProcessorValueTreeState::SliderAttachment(audioProcessor.sliderState,"lowMidCrossover",lowMidCrossover));
     sliderAttachments.emplace_back(new AudioProcessorValueTreeState::SliderAttachment(audioProcessor.sliderState,"midCrossover",midCrossover));
-    sliderAttachments.emplace_back(new AudioProcessorValueTreeState::SliderAttachment(audioProcessor.sliderState,"midHighMidCrossover",midHighCrossover));
+    sliderAttachments.emplace_back(new AudioProcessorValueTreeState::SliderAttachment(audioProcessor.sliderState,"midHighCrossover",midHighCrossover));
     sliderAttachments.emplace_back(new AudioProcessorValueTreeState::SliderAttachment(audioProcessor.sliderState,"mixPerc",mixKnob));
     sliderAttachments.emplace_back(new AudioProcessorValueTreeState::SliderAttachment(audioProcessor.sliderState,"outputGain",outputKnob));
     buttonAttachments.emplace_back(new AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.sliderState,"lowBandisOff",lowBandOff));

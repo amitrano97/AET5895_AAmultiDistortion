@@ -37,15 +37,20 @@ AudioProcessorValueTreeState::ParameterLayout MultiDistortionAudioProcessor::cre
     params.push_back( std::make_unique<AudioParameterFloat> ("gainMid", "Gain Mid", -24.f, 24.f, 0.f) );
     params.push_back( std::make_unique<AudioParameterFloat> ("gainHiMid", "Gain HiMid", -24.f, 24.f, 0.f) );
     params.push_back( std::make_unique<AudioParameterFloat> ("gainHigh", "Gain High", -24.f, 24.f, 0.f) );
-    params.push_back( std::make_unique<AudioParameterFloat> ("lowMidCrossover","Low Mid Crossover",20.f, 349.f, 250.f) );
-    params.push_back( std::make_unique<AudioParameterFloat> ("midCrossover","Mid Crossover",350.f, 2499.f, 1500.f) );
-    params.push_back( std::make_unique<AudioParameterFloat> ("midHighCrossover","Mid High Crossover",2500.f, 20000.f, 8000.f) );
+    params.push_back( std::make_unique<AudioParameterFloat> ("lowMidCrossover","Low Mid Crossover",20.f, 349.f, 200.f) );
+    params.push_back( std::make_unique<AudioParameterFloat> ("midCrossover","Mid Crossover",350.f, 4999.f, 1500.f) );
+    params.push_back( std::make_unique<AudioParameterFloat> ("midHighCrossover","Mid High Crossover",5000.f, 20000.f, 8000.f) );
     params.push_back( std::make_unique<AudioParameterFloat>("mixPerc", "Wet/Dry", 0.f, 100.f, 100.f) );
     params.push_back( std::make_unique<AudioParameterFloat>("outputGain", "Output Gain", -24.f, 24.f, 0.f) );
     params.push_back( std::make_unique<AudioParameterBool>("lowBandisOff", "Bypass Low", false) );
     params.push_back( std::make_unique<AudioParameterBool>("midBandisOff", "Bypass Mid", false) );
     params.push_back( std::make_unique<AudioParameterBool>("hiMidBandisOff", "Bypass High Mid", false) );
     params.push_back( std::make_unique<AudioParameterBool>("highBandisOff", "Bypass High", false) );
+//    params.push_back( std::make_unique<AudioParameterInt>("distortionTypeLow", "Distortion Type Low", 1, 5, 3) );
+//    params.push_back( std::make_unique<AudioParameterInt>("distortionTypeMid", "Distortion Type Mid", 1, 5, 3) );
+//    params.push_back( std::make_unique<AudioParameterInt>("distortionTypeHiMid", "Distortion Type Hi Mid", 1, 5, 3) );
+//    params.push_back( std::make_unique<AudioParameterInt>("distortionTypeHigh", "Distortion Type High", 1, 5, 3) );
+    
     
     return { params.begin() , params.end() };
     
